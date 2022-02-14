@@ -1,5 +1,5 @@
 {
-  "FilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/UserApi.csproj",
+  "FilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16295,7 +16295,7 @@
     ],
     "CSharpLanguageVersion": 1000
   },
-  "RootNamespace": "UserApi",
+  "RootNamespace": "if3250_2022_19_filantropi_backend",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

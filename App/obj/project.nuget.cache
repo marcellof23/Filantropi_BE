@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6eYRmyCnUdNtPZZaZ4dLtvsE5EF9BIBZ7ZKPbMWuDwg8OMipyaJQnkcqRZF2ExFecllS0T9u9hZtisACor/Nlw==",
+  "dgSpecHash": "8QPDTSAndNDCaDT7AqaLXczyCbSxJy7fN0GFSGsRsTymkwz/mkHB8xb3JEnB5dD5LI+oEiccl0izjg+H4C3IbQ==",
   "success": true,
-  "projectFilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/UserApi.csproj",
+  "projectFilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
   "expectedPackageFiles": [
     "/home/integeroverflow/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",

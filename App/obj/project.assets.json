@@ -9646,9 +9646,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/UserApi.csproj",
-      "projectName": "UserApi",
-      "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/UserApi.csproj",
+      "projectUniqueName": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
+      "projectName": "if3250_2022_19_filantropi_backend",
+      "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
       "packagesPath": "/home/integeroverflow/.nuget/packages/",
       "outputPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/obj/",
       "projectStyle": "PackageReference",

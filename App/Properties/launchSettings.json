@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "UserApi": {
+    "if3250_2022_19_filantropi_backend": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
