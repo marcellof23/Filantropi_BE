@@ -1,4 +1,4 @@
-namespace UserApi.Models
+namespace if3250_2022_35_cakrawala_backend.Models
 {
   public class User
   {

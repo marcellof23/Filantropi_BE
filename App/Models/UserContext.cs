@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
-namespace UserApi.Models
+namespace if3250_2022_35_cakrawala_backend.Models
 {
   public class UserContext : DbContext
   {

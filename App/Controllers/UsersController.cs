@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UserApi.Models;
+using if3250_2022_35_cakrawala_backend.Models;
 
 namespace UserApi.Controllers
 {

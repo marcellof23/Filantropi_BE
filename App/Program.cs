@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using UserApi.Models;
+using if3250_2022_35_cakrawala_backend.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
