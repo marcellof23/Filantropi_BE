@@ -5,9 +5,9 @@ namespace if3250_2022_19_filantropi_backend.Models
     public long Id { get; set; }
     public string? Name { get; set; }
 
-    public string Email { get; set; }
+    public string Email { get; set; } = default!;
 
-    public string Password { get; set; }
+    public string Password { get; set; } = default!;
 
     public int DonationAmount { get; set; }
   }
