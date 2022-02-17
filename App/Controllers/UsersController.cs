@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using if3250_2022_35_cakrawala_backend.Models;
+using if3250_2022_19_filantropi_backend.Models;
+using if3250_2022_19_filantropi_backend.Repository;
 
-namespace UserApi.Controllers
+namespace if3250_2022_19_filantropi_backend.Controllers
 {
   [Route("api/user")]
   [ApiController]

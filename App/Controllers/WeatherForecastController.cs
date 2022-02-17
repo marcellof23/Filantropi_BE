@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace if3250_2022_35_cakrawala_backend.Controllers;
+namespace if3250_2022_19_filantropi_backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]

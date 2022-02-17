@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using if3250_2022_35_cakrawala_backend.Models;
-
+using if3250_2022_19_filantropi_backend.Models;
+using if3250_2022_19_filantropi_backend.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
