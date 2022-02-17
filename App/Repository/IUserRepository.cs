@@ -3,12 +3,11 @@ using System.Collections.Generic;
 
 namespace if3250_2022_19_filantropi_backend.Repository
 {
-  public interface IRepositoryUser
+  public interface IUserRepository
   {
-    void AddUserRecord(User user);
-    void UpdateUserRecord(User user);
-    void DeleteUserRecord(int id);
-    User GetUserSingleRecord(int id);
-    List<User> GetUserRecords();
+    Task<User> Get(int id);
+    // Task<IEnumerable<User>> GetAll();
+    Task Add(User user);
+    Task Update(User user);
   }
 }

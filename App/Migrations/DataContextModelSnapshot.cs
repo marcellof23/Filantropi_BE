@@ -20,7 +20,7 @@ namespace if3250_2022_19_filantropi_backend.Migrations
 
       NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-      modelBuilder.Entity("if3250_2022_35_cakrawala_backend.Models.User", b =>
+      modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.User", b =>
           {
 
             b.Property<long>("Id")

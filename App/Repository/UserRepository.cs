@@ -1,45 +1,43 @@
 using if3250_2022_19_filantropi_backend.Models;
+using if3250_2022_19_filantropi_backend.Data;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace if3250_2022_19_filantropi_backend.Repository
 {
-  public class RepositoryUser : IRepositoryUser
+  public class UserRepository : IUserRepository
   {
-    private readonly UserContext _context;
-
-    public RepositoryUser(UserContext context)
+    private readonly IDataContext _context;
+    public UserRepository(IDataContext context)
     {
-      _context = context;
+      this._context = context;
     }
-
-    public void AddUserRecord(User user)
+    public async Task Add(User user)
     {
       _context.Users.Add(user);
-      _context.SaveChanges();
+      await _context.SaveChangesAsync();
     }
 
-    public void UpdateUserRecord(User user)
+    public async Task<User> Get(int id)
     {
-      _context.Users.Update(user);
-      _context.SaveChanges();
+      return await _context.Users.FindAsync(id);
     }
 
-    public void DeleteUserRecord(int id)
-    {
-      var entity = _context.Users.FirstOrDefault(t => t.Id == id);
-      _context.Users.Remove(entity);
-      _context.SaveChanges();
-    }
+    // public async Task<IEnumerable<User>> GetAll()
+    // {
+    //   return await _context.Users.ToListAsync();
+    // }
 
-    public User GetUserSingleRecord(int id)
+    public async Task Update(User user)
     {
-      return _context.Users.FirstOrDefault(t => t.Id == id);
-    }
+      var itemToUpdate = await _context.Users.FindAsync(user.Id);
+      if (itemToUpdate == null)
+      {
+        throw new NullReferenceException();
+      }
 
-    public List<User> GetUserRecords()
-    {
-      return _context.Users.ToList();
+      itemToUpdate.Name = user.Name;
+      await _context.SaveChangesAsync();
     }
   }
 }

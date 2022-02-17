@@ -1,21 +1,28 @@
-using Microsoft.EntityFrameworkCore;
-using if3250_2022_19_filantropi_backend.Models;
+using if3250_2022_19_filantropi_backend.Data;
 using if3250_2022_19_filantropi_backend.Repository;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<UserContext>(opt =>
-    opt.UseInMemoryDatabase("UserList"));
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+
+builder.Services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (builder.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-  app.UseDeveloperExceptionPage();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
