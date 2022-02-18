@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using if3250_2022_19_filantropi_backend.Models;
 using if3250_2022_19_filantropi_backend.Data;
 using System.Collections.Generic;
@@ -23,10 +24,10 @@ namespace if3250_2022_19_filantropi_backend.Repository
       return await _context.Users.FindAsync(id);
     }
 
-    // public async Task<IEnumerable<User>> GetAll()
-    // {
-    //   return await _context.Users.ToListAsync();
-    // }
+    public async Task<IEnumerable<User>> GetAll()
+    {
+      return await _context.Users.ToListAsync();
+    }
 
     public async Task Update(User user)
     {
