@@ -8,5 +8,6 @@
 
 ## How to run the Database
 - execute `docker-compose up -d`
+- for local, adapt ur username and password in the defaultConnection on appsettings.json
 - if you want to open pgAdmin, open Docker Desktop and find the corresponding container, then click `open in browser`
 

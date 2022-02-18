@@ -9,6 +9,10 @@ namespace if3250_2022_19_filantropi_backend.Models
 
     public string Password { get; set; } = default!;
 
+    public string Role { get; set; } = default!;
+
+    public string? ImageUrl { get; set; }
+
     public int DonationAmount { get; set; }
   }
 }
