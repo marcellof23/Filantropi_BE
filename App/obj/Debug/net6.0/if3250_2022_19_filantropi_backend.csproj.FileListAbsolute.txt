@@ -34,3 +34,4 @@
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/obj/Debug/net6.0/if3250_2022_19_filantropi_backend.genruntimeconfig.cache
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Npgsql.dll
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/EFCore.NamingConventions.dll

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ebwVcCPKjJ6CRiAkIvX7WWbXFlIDxPWbCPCpy/23ecXuIw+GLdclOH/bAJ+MHeh2y/ZcyUEYt+r3l+x/QhMfPw==",
+  "dgSpecHash": "/z4bR5ARoJAXYM3wIWgIzU+x25khVeSGOvN6fm4xQZdktSaAXPHatQ5Sds2QNLBkw8SWW9iZmYhnqxFQwMMDLQ==",
   "success": true,
   "projectFilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
   "expectedPackageFiles": [
+    "/home/integeroverflow/.nuget/packages/efcore.namingconventions/6.0.0/efcore.namingconventions.6.0.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.entityframeworkcore/6.0.2/microsoft.entityframeworkcore.6.0.2.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.2/microsoft.entityframeworkcore.abstractions.6.0.2.nupkg.sha512",

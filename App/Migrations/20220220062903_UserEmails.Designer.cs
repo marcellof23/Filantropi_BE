@@ -11,8 +11,8 @@ using if3250_2022_19_filantropi_backend.Data;
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220218083211_User")]
-    partial class User
+    [Migration("20220220062903_UserEmails")]
+    partial class UserEmails
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,13 +25,6 @@ namespace if3250_2022_19_filantropi_backend.Migrations
 
             modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.User", b =>
                 {
-                    b.Property<string>("Email")
-                        .HasColumnType("text")
-                        .HasColumnName("email");
-
-                    b.Property<int>("DonationAmount")
-                        .HasColumnType("integer");
-
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
@@ -39,24 +32,35 @@ namespace if3250_2022_19_filantropi_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<int>("DonationAmount")
+                        .HasColumnType("integer")
+                        .HasColumnName("donation_amount");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("email");
+
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("role");
 
-                    b.HasKey("Email");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.ToTable("users", (string)null);
                 });

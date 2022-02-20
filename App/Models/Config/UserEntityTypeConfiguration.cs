@@ -8,17 +8,34 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
     public void Configure(EntityTypeBuilder<User> builder)
     {
       builder.ToTable("users");
-      builder.HasKey(e => e.Email);
-      builder.HasIndex(e => e.Email).IsUnique();
 
       builder.Property(b => b.Id)
-          .IsRequired()
-          .HasColumnName("id")
-          .ValueGeneratedOnAdd();
+      .IsRequired()
+      .HasColumnName("id")
+      .ValueGeneratedOnAdd();
+
+      builder.Property(b => b.Name)
+      .IsRequired()
+      .HasColumnName("name");
 
       builder.Property(b => b.Email)
-          .IsRequired()
-          .HasColumnName("email");
+      .IsRequired()
+      .HasColumnName("email");
+
+      builder.Property(b => b.Password)
+      .IsRequired()
+      .HasColumnName("password");
+
+      builder.Property(b => b.Role)
+      .IsRequired()
+      .HasColumnName("role");
+
+      builder.Property(b => b.ImageUrl)
+      .HasColumnName("image_url");
+
+      builder.Property(b => b.DonationAmount)
+      .IsRequired()
+      .HasColumnName("donation_amount");
     }
   }
 }
