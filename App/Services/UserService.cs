@@ -3,20 +3,23 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using if3250_2022_19_filantropi_backend.Data;
 using if3250_2022_19_filantropi_backend.Models;
 using if3250_2022_19_filantropi_backend.Helpers;
 
 namespace if3250_2022_19_filantropi_backend.Services
 {
+
   public interface IUserService
   {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     IEnumerable<User> GetAll();
-    User GetById(int id);
+    Task<User> GetById(long id);
   }
 
   public class UserService : IUserService
   {
+    private readonly DataContext _context;
     // users hardcoded for simplicity, store in a db with hashed passwords in production applications
     private List<User> _users = new List<User>
     {
@@ -25,15 +28,15 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     private readonly AppSettings _appSettings;
 
-    public UserService(IOptions<AppSettings> appSettings)
+    public UserService(IOptions<AppSettings> appSettings, DataContext context)
     {
       _appSettings = appSettings.Value;
+      _context = context;
     }
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
-      var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
-
+      var user = _context.Users.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
       // return null if user not found
       if (user == null) return null;
 
@@ -48,9 +51,16 @@ namespace if3250_2022_19_filantropi_backend.Services
       return _users;
     }
 
-    public User GetById(int id)
+    public async Task<User> GetById(long id)
     {
-      return _users.FirstOrDefault(x => x.Id == id);
+      var user = await _context.Users.FindAsync(id);
+
+      if (user == null)
+      {
+        return null;
+      }
+
+      return user;
     }
 
     // helper methods

@@ -13,6 +13,8 @@ namespace if3250_2022_19_filantropi_backend.Helpers
     public void OnAuthorization(AuthorizationFilterContext context)
     {
       var user = (User)context.HttpContext.Items["User"];
+      Console.WriteLine(user);
+      // var user = true;
       if (user == null)
       {
         // not logged in
