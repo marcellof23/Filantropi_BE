@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/z4bR5ARoJAXYM3wIWgIzU+x25khVeSGOvN6fm4xQZdktSaAXPHatQ5Sds2QNLBkw8SWW9iZmYhnqxFQwMMDLQ==",
+  "dgSpecHash": "qOTlGB9f/psSQdU91HZOF4tNf8kgJWGJzZuYGCikbDeFKFnIN/LElSkKkZiQxpbwy0MxbN+58ojew+sVIaa9sg==",
   "success": true,
   "projectFilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
   "expectedPackageFiles": [
     "/home/integeroverflow/.nuget/packages/efcore.namingconventions/6.0.0/efcore.namingconventions.6.0.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
+    "/home/integeroverflow/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.entityframeworkcore/6.0.2/microsoft.entityframeworkcore.6.0.2.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.2/microsoft.entityframeworkcore.abstractions.6.0.2.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.2/microsoft.entityframeworkcore.analyzers.6.0.2.nupkg.sha512",
@@ -22,6 +23,9 @@
     "/home/integeroverflow/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/integeroverflow/.nuget/packages/microsoft.identitymodel.jsonwebtokens/6.16.0/microsoft.identitymodel.jsonwebtokens.6.16.0.nupkg.sha512",
+    "/home/integeroverflow/.nuget/packages/microsoft.identitymodel.logging/6.16.0/microsoft.identitymodel.logging.6.16.0.nupkg.sha512",
+    "/home/integeroverflow/.nuget/packages/microsoft.identitymodel.tokens/6.16.0/microsoft.identitymodel.tokens.6.16.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.14.0/microsoft.visualstudio.azure.containers.tools.targets.1.14.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/npgsql/6.0.2/npgsql.6.0.2.nupkg.sha512",
@@ -32,7 +36,9 @@
     "/home/integeroverflow/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/home/integeroverflow/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "/home/integeroverflow/.nuget/packages/system.identitymodel.tokens.jwt/6.16.0/system.identitymodel.tokens.jwt.6.16.0.nupkg.sha512",
+    "/home/integeroverflow/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/home/integeroverflow/.nuget/packages/system.security.cryptography.cng/4.5.0/system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

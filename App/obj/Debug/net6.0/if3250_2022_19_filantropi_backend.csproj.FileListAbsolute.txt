@@ -35,3 +35,7 @@
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Npgsql.dll
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/EFCore.NamingConventions.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll

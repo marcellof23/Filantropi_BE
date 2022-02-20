@@ -11,7 +11,7 @@ using if3250_2022_19_filantropi_backend.Data;
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220220062903_UserEmails")]
+    [Migration("20220220073126_UserEmails")]
     partial class UserEmails
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
