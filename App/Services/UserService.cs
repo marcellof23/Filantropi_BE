@@ -15,6 +15,7 @@ namespace if3250_2022_19_filantropi_backend.Services
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     IEnumerable<User> GetAll();
     Task<User> GetById(long id);
+    DataContext GetDataContext();
   }
 
   public class UserService : IUserService
@@ -61,6 +62,12 @@ namespace if3250_2022_19_filantropi_backend.Services
       }
 
       return user;
+    }
+
+    //Register dengan add
+    public DataContext GetDataContext()
+    {
+        return _context;
     }
 
     // helper methods
