@@ -13,7 +13,7 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).UseSnakeCaseNamingConvention());
 builder.Services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
 
 var app = builder.Build();
