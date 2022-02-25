@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +17,12 @@ namespace if3250_2022_19_filantropi_backend.Controllers
   public class UsersController : ControllerBase
   {
     private IUserService _userService;
+    private readonly DataContext _context;
 
     public UsersController(IUserService userService)
     {
       _userService = userService;
+      _context = userService.GetDataContext();
     }
 
     [HttpPost("authenticate")]
@@ -35,12 +36,14 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(response);
     }
 
-    // // GET: api/Users
-    // [HttpGet]
-    // public async Task<ActionResult<IEnumerable<User>>> GetUsers()
-    // {
-    //   return await _context.Users.ToListAsync();
-    // }
+    // GET: api/Users
+    [Authorize]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+    {
+      var users = await _userService.GetAll();
+      return Ok(users);
+    }
 
     // GET: api/Users/5
     [Authorize]
@@ -51,67 +54,59 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(users);
     }
 
-    // // PUT: api/Users/5
-    // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    // [HttpPut("{id}")]
-    // public async Task<IActionResult> PutUser(long id, User user)
-    // {
-    //   if (id != user.Id)
-    //   {
-    //     return BadRequest();
-    //   }
+    // PUT: api/Users/5
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    [Authorize]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutUser(long id, User user)
+    {
+      var user_updated = await _userService.UpdateUser(id, user);
 
-    //   _context.Entry(user).State = EntityState.Modified;
+      if (user_updated == null)
+      {
+        return BadRequest();
+      }
 
-    //   try
-    //   {
-    //     await _context.SaveChangesAsync();
-    //   }
-    //   catch (DbUpdateConcurrencyException)
-    //   {
-    //     if (!UserExists(id))
-    //     {
-    //       return NotFound();
-    //     }
-    //     else
-    //     {
-    //       throw;
-    //     }
-    //   }
+      return Ok(user_updated);
+    }
 
-    //   return NoContent();
-    // }
+    // POST: api/Users
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    [HttpPost]
+    public async Task<ActionResult<User>> PostUser(User user)
+    {
+      if (EmailExists(user.Email))
+      {
+        return BadRequest(new { message = "Email exists" });
+      }
+      _context.Users.Add(user);
+      await _context.SaveChangesAsync();
+      return Ok(user);
+    }
 
-    // // POST: api/Users
-    // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    // [HttpPost]
-    // public async Task<ActionResult<User>> PostUser(User user)
-    // {
-    //   _context.Users.Add(user);
-    //   await _context.SaveChangesAsync();
+    // DELETE: api/Users/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser(long id)
+    {
+      var user = await _context.Users.FindAsync(id);
+      if (user == null)
+      {
+        return NotFound();
+      }
 
-    //   return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
-    // }
+      _context.Users.Remove(user);
+      await _context.SaveChangesAsync();
 
-    // // DELETE: api/Users/5
-    // [HttpDelete("{id}")]
-    // public async Task<IActionResult> DeleteUser(long id)
-    // {
-    //   var user = await _context.Users.FindAsync(id);
-    //   if (user == null)
-    //   {
-    //     return NotFound();
-    //   }
+      return NoContent();
+    }
 
-    //   _context.Users.Remove(user);
-    //   await _context.SaveChangesAsync();
-
-    //   return NoContent();
-    // }
-
-    // private bool UserExists(long id)
-    // {
-    //   return _context.Users.Any(e => e.Id == id);
-    // }
+    private bool UserExists(long id)
+    {
+      return _context.Users.Any(e => e.Id == id);
+    }
+    private bool EmailExists(string email)
+    {
+      return _context.Users.Any(e => e.Email == email);
+    }
   }
 }

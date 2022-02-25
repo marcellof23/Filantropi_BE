@@ -8,7 +8,7 @@ namespace if3250_2022_19_filantropi_backend.Models
 
     public string Email { get; set; } = default!;
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public string Password { get; set; } = default!;
 
     public string Role { get; set; } = default!;

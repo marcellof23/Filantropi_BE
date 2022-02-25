@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,8 +15,11 @@ namespace if3250_2022_19_filantropi_backend.Services
   public interface IUserService
   {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
-    IEnumerable<User> GetAll();
+    Task<IEnumerable<User>> GetAll();
     Task<User> GetById(long id);
+    DataContext GetDataContext();
+
+    Task<User> UpdateUser(long id, User user);
   }
 
   public class UserService : IUserService
@@ -46,9 +51,9 @@ namespace if3250_2022_19_filantropi_backend.Services
       return new AuthenticateResponse(user, token);
     }
 
-    public IEnumerable<User> GetAll()
+    public async Task<IEnumerable<User>> GetAll()
     {
-      return _users;
+      return await _context.Users.ToListAsync();
     }
 
     public async Task<User> GetById(long id)
@@ -61,6 +66,45 @@ namespace if3250_2022_19_filantropi_backend.Services
       }
 
       return user;
+    }
+
+    public async Task<User> UpdateUser(long id, User user)
+    {
+      // if (id != user.Id)
+      // {
+      //   return null;
+      // }
+
+      _context.Entry(user).State = EntityState.Modified;
+
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!UserExists(id))
+        {
+          return null;
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return user;
+    }
+
+    private bool UserExists(long id)
+    {
+      return _context.Users.Any(e => e.Id == id);
+    }
+
+    //Register dengan add
+    public DataContext GetDataContext()
+    {
+      return _context;
     }
 
     // helper methods
