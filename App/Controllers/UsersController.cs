@@ -60,7 +60,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPut("{id}")]
     public async Task<IActionResult> PutUser(long id, User user)
     {
-      var user_updated = await _userService.UpdateUser(id, user);
+      var user_updated = await _userService.UpdateUser(user);
 
       if (user_updated == null)
       {
@@ -68,6 +68,24 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       }
 
       return Ok(user_updated);
+
+      // try
+      // {
+      //   if (id != user.Id)
+      //     return BadRequest("Employee ID mismatch");
+
+      //   var UserToUpdate = _userService.UserExists(id);
+
+      //   if (UserToUpdate == null)
+      //     return NotFound($"Employee with Id = {id} not found");
+
+      //   //return await _userService.UpdateUser(user);
+      // }
+      // catch (Exception)
+      // {
+      //   return StatusCode(StatusCodes.Status500InternalServerError,
+      //       "Error updating data");
+      // }
     }
 
     // POST: api/Users

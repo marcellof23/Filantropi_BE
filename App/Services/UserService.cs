@@ -19,7 +19,9 @@ namespace if3250_2022_19_filantropi_backend.Services
     Task<User> GetById(long id);
     DataContext GetDataContext();
 
-    Task<User> UpdateUser(long id, User user);
+    Task<User> UpdateUser(User user);
+
+    bool UserExists(long id);
   }
 
   public class UserService : IUserService
@@ -68,35 +70,34 @@ namespace if3250_2022_19_filantropi_backend.Services
       return user;
     }
 
-    public async Task<User> UpdateUser(long id, User user)
+    public async Task<User> UpdateUser(User user)
     {
-      // if (id != user.Id)
+      // if (!UserExists(id))
       // {
-      //   return null;
+      //   return user;
       // }
 
-      _context.Entry(user).State = EntityState.Modified;
-
-      try
-      {
-        await _context.SaveChangesAsync();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!UserExists(id))
-        {
-          return null;
-        }
-        else
-        {
-          throw;
-        }
-      }
-
       return user;
+
+      // _context.Entry(user).State = EntityState.Modified;
+      // try
+      // {
+      //   _context.Update(student);
+      //   await _context.SaveChangesAsync();
+      //   return RedirectToAction(nameof(Index));
+      // }
+      // catch (DbUpdateException /* ex */)
+      // {
+      //   //Log the error (uncomment ex variable name and write a log.)
+      //   ModelState.AddModelError("", "Unable to save changes. " +
+      //       "Try again, and if the problem persists, " +
+      //       "see your system administrator.");
+      // }
+
+      // return user;
     }
 
-    private bool UserExists(long id)
+    public bool UserExists(long id)
     {
       return _context.Users.Any(e => e.Id == id);
     }
