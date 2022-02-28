@@ -2,6 +2,8 @@ using if3250_2022_19_filantropi_backend.Data;
 using if3250_2022_19_filantropi_backend.Services;
 using if3250_2022_19_filantropi_backend.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors();
 builder.Services.AddControllers();
+builder.Services.AddMvc().AddNewtonsoftJson(options =>
+{
+  options.SerializerSettings.ContractResolver = new DefaultContractResolver
+  {
+    NamingStrategy = new SnakeCaseNamingStrategy()
+  };
+});
+
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).UseSnakeCaseNamingConvention());

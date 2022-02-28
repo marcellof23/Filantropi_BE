@@ -19,7 +19,7 @@ namespace if3250_2022_19_filantropi_backend.Services
     Task<User> GetById(long id);
     DataContext GetDataContext();
 
-    Task<User> UpdateUser(User user);
+    Task<User> UpdateUser(User user, long id);
 
     bool UserExists(long id);
   }
@@ -70,31 +70,30 @@ namespace if3250_2022_19_filantropi_backend.Services
       return user;
     }
 
-    public async Task<User> UpdateUser(User user)
+    public async Task<User> UpdateUser(User user, long id)
     {
-      // if (!UserExists(id))
+      // var userToUpdate = await _context.Users
+      //  .FirstOrDefaultAsync(u => u.Id == id);
+
+      // if (await TryUpdateModelAsync<Course>(courseToUpdate,
+      //         "",
+      //         c => c.Credits, c => c.DepartmentID, c => c.Title))
       // {
+      //   try
+      //   {
+      //     await _context.SaveChangesAsync();
+      //   }
+      //   catch (DbUpdateException /* ex */)
+      //   {
+      //     //Log the error (uncomment ex variable name and write a log.)
+      //     ModelState.AddModelError("", "Unable to save changes. " +
+      //         "Try again, and if the problem persists, " +
+      //         "see your system administrator.");
+      //   }
       //   return user;
       // }
 
       return user;
-
-      // _context.Entry(user).State = EntityState.Modified;
-      // try
-      // {
-      //   _context.Update(student);
-      //   await _context.SaveChangesAsync();
-      //   return RedirectToAction(nameof(Index));
-      // }
-      // catch (DbUpdateException /* ex */)
-      // {
-      //   //Log the error (uncomment ex variable name and write a log.)
-      //   ModelState.AddModelError("", "Unable to save changes. " +
-      //       "Try again, and if the problem persists, " +
-      //       "see your system administrator.");
-      // }
-
-      // return user;
     }
 
     public bool UserExists(long id)

@@ -80,3 +80,7 @@ C:/Kuliah/Semester6/PPL/Repo/Main/filantropi_backend/App/obj/Debug/net6.0/if3250
 C:/Kuliah/Semester6/PPL/Repo/Main/filantropi_backend/App/obj/Debug/net6.0/ref/if3250_2022_19_filantropi_backend.dll
 C:/Kuliah/Semester6/PPL/Repo/Main/filantropi_backend/App/obj/Debug/net6.0/if3250_2022_19_filantropi_backend.pdb
 C:/Kuliah/Semester6/PPL/Repo/Main/filantropi_backend/App/obj/Debug/net6.0/if3250_2022_19_filantropi_backend.genruntimeconfig.cache
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll

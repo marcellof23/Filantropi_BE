@@ -60,32 +60,40 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPut("{id}")]
     public async Task<IActionResult> PutUser(long id, User user)
     {
-      var user_updated = await _userService.UpdateUser(user);
-
-      if (user_updated == null)
+      if (id != user.Id)
       {
         return BadRequest();
       }
 
-      return Ok(user_updated);
+      var local = _context.Set<User>()
+    .Local
+    .FirstOrDefault(entry => entry.Id.Equals(id));
 
-      // try
-      // {
-      //   if (id != user.Id)
-      //     return BadRequest("Employee ID mismatch");
+      // check if local is not null 
+      if (local != null)
+      {
+        _context.Entry(local).State = EntityState.Detached;
+      }
 
-      //   var UserToUpdate = _userService.UserExists(id);
+      _context.Entry(user).State = EntityState.Modified;
 
-      //   if (UserToUpdate == null)
-      //     return NotFound($"Employee with Id = {id} not found");
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!_userService.UserExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
 
-      //   //return await _userService.UpdateUser(user);
-      // }
-      // catch (Exception)
-      // {
-      //   return StatusCode(StatusCodes.Status500InternalServerError,
-      //       "Error updating data");
-      // }
+      return NoContent();
     }
 
     // POST: api/Users
@@ -103,6 +111,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // DELETE: api/Users/5
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(long id)
     {
