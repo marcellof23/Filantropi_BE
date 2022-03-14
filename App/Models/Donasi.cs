@@ -8,7 +8,7 @@ namespace if3250_2022_19_filantropi_backend.Models
         public long Id { get; set; }
 
         [ForeignKey("GalanganDana")]
-        public long GalangDanaId { get; set; } = default!;
+        public long GalangDanaId { get; set; }
         public virtual GalanganDana GalanganDana { get; set; }
 
         //[Key]

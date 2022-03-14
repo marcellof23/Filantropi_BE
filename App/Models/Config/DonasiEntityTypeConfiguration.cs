@@ -7,7 +7,7 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
     {
         public void Configure(EntityTypeBuilder<Donasi> builder)
         {
-            builder.ToTable("users");
+            builder.ToTable("donasi");
 
             builder.Property(b => b.Id)
             .IsRequired()

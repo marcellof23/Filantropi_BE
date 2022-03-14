@@ -21,9 +21,15 @@ namespace if3250_2022_19_filantropi_backend.Data
 
       modelBuilder.ApplyConfigurationsFromAssembly(typeof(GalanganDanaTypeConfiguration).Assembly);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DonasiEntityTypeConfiguration).Assembly);
+      modelBuilder.ApplyConfigurationsFromAssembly(typeof(DonasiEntityTypeConfiguration).Assembly);
+      
+      /*
+      modelBuilder.Entity<Donasi>()
+        .HasOne(p => p.User)
+        .WithOne(b => b.Donasi)
+        .HasForeignKey("User");
+      */
 
-    
         /*
         modelBuilder.Entity<Donasi>()
                 .HasOne(p => p.User)
