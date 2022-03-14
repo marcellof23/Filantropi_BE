@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "Castle.Core/4.4.0": {
+      "Castle.Core/4.4.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -43,6 +43,36 @@
           "lib/net6.0/EFCore.NamingConventions.dll": {}
         }
       },
+      "Microsoft.AspNetCore.JsonPatch/6.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "6.0.2",
+          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.CodeCoverage/16.11.0": {
         "type": "package",
         "compile": {
@@ -56,7 +86,7 @@
           "build/netstandard1.0/Microsoft.CodeCoverage.targets": {}
         }
       },
-      "Microsoft.CSharp/4.5.0": {
+      "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -604,10 +634,10 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Moq/4.16.1": {
+      "Moq/4.17.2": {
         "type": "package",
         "dependencies": {
-          "Castle.Core": "4.4.0",
+          "Castle.Core": "4.4.1",
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "compile": {
@@ -666,37 +696,25 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/9.0.1": {
+      "Newtonsoft.Json/13.0.1": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.CSharp": "4.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Dynamic.Runtime": "4.0.11",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.Linq": "4.1.0",
-          "System.Linq.Expressions": "4.1.0",
-          "System.ObjectModel": "4.0.12",
-          "System.Reflection": "4.1.0",
-          "System.Reflection.Extensions": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Serialization.Primitives": "4.1.1",
-          "System.Text.Encoding": "4.0.11",
-          "System.Text.Encoding.Extensions": "4.0.11",
-          "System.Text.RegularExpressions": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11",
-          "System.Xml.ReaderWriter": "4.0.11",
-          "System.Xml.XDocument": "4.0.11"
-        },
         "compile": {
-          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "Npgsql/6.0.2": {
@@ -1733,19 +1751,6 @@
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.1.1": {
-        "type": "package",
-        "dependencies": {
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0"
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
-        }
-      },
       "System.Security.Cryptography.Algorithms/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2182,11 +2187,13 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "EFCore.NamingConventions": "6.0.0",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.2",
           "Microsoft.EntityFrameworkCore": "6.0.2",
           "Microsoft.EntityFrameworkCore.InMemory": "6.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.2",
           "Microsoft.IdentityModel.Tokens": "6.16.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0",
+          "Moq": "4.17.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.2",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.IdentityModel.Tokens.Jwt": "6.16.0"
@@ -2204,17 +2211,17 @@
     }
   },
   "libraries": {
-    "Castle.Core/4.4.0": {
-      "sha512": "b5rRL5zeaau1y/5hIbI+6mGw3cwun16YjkHZnV9RRT5UyUIFsgLmNXJ0YnIN9p8Hw7K7AbG1q1UclQVU3DinAQ==",
+    "Castle.Core/4.4.1": {
+      "sha512": "zanbjWC0Y05gbx4eGXkzVycOQqVOFVeCjVsDSyuao9P4mtN1w3WxxTo193NGC7j3o2u3AJRswaoC6hEbnGACnQ==",
       "type": "package",
-      "path": "castle.core/4.4.0",
+      "path": "castle.core/4.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ASL - Apache Software Foundation License.txt",
         "CHANGELOG.md",
         "LICENSE",
-        "castle.core.4.4.0.nupkg.sha512",
+        "castle.core.4.4.1.nupkg.sha512",
         "castle.core.nuspec",
         "lib/net35/Castle.Core.dll",
         "lib/net35/Castle.Core.xml",
@@ -2292,6 +2299,40 @@
         "lib/net6.0/EFCore.NamingConventions.dll"
       ]
     },
+    "Microsoft.AspNetCore.JsonPatch/6.0.2": {
+      "sha512": "SifO3B9FwrRMXIdBHgVoMU17j6E43nYGUIC/3WRpNldCyZKOeBGJ8eT1KfQK80FaxkkJU+4MPm0uCbeYnXvkFQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.jsonpatch/6.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/net461/Microsoft.AspNetCore.JsonPatch.xml",
+        "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/net6.0/Microsoft.AspNetCore.JsonPatch.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.xml",
+        "microsoft.aspnetcore.jsonpatch.6.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.jsonpatch.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.2": {
+      "sha512": "AQ8dnOXPJajeWgM0FW6uMs71+SFnVLe+skEHj/chF3fvkeXFCGqhzaWALlin+LoLKi17+frdRJ340cfT5afs4Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/6.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.xml",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.6.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.nuspec"
+      ]
+    },
     "Microsoft.CodeCoverage/16.11.0": {
       "sha512": "wf6lpAeCqP0KFfbDVtfL50lr7jY1gq0+0oSphyksfLOEygMDXqnaxHK5LPFtMEhYSEtgXdNyXNnEddOqQQUdlQ==",
       "type": "package",
@@ -2358,10 +2399,10 @@
         "microsoft.codecoverage.nuspec"
       ]
     },
-    "Microsoft.CSharp/4.5.0": {
-      "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+    "Microsoft.CSharp/4.7.0": {
+      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
-      "path": "microsoft.csharp/4.5.0",
+      "path": "microsoft.csharp/4.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2374,6 +2415,7 @@
         "lib/netcoreapp2.0/_._",
         "lib/netstandard1.3/Microsoft.CSharp.dll",
         "lib/netstandard2.0/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.xml",
         "lib/portable-net45+win8+wp8+wpa81/_._",
         "lib/uap10.0.16299/_._",
         "lib/win8/_._",
@@ -2383,7 +2425,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "microsoft.csharp.4.5.0.nupkg.sha512",
+        "microsoft.csharp.4.7.0.nupkg.sha512",
         "microsoft.csharp.nuspec",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
@@ -3470,10 +3512,10 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Moq/4.16.1": {
-      "sha512": "bw3R9q8cVNhWXNpnvWb0OGP4HadS4zvClq+T1zf7AF+tLY1haZ2AvbHidQekf4PDv1T40c6brZeT/V0IBq7cEQ==",
+    "Moq/4.17.2": {
+      "sha512": "HytUPJ3/uks2UgJ9hIcyXm3YxpFAR4OJzbQwTHltbKGun3lFLhEHs97hiiPj1dY8jV/kasXeihTzDxct6Zf3iQ==",
       "type": "package",
-      "path": "moq/4.16.1",
+      "path": "moq/4.17.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3483,7 +3525,7 @@
         "lib/netstandard2.0/Moq.xml",
         "lib/netstandard2.1/Moq.dll",
         "lib/netstandard2.1/Moq.xml",
-        "moq.4.16.1.nupkg.sha512",
+        "moq.4.17.2.nupkg.sha512",
         "moq.nuspec",
         "moq.png"
       ]
@@ -3501,14 +3543,14 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/9.0.1": {
-      "sha512": "U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
-      "path": "newtonsoft.json/9.0.1",
-      "hasTools": true,
+      "path": "newtonsoft.json/13.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -3519,13 +3561,34 @@
         "lib/net45/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.9.0.1.nupkg.sha512",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
-        "tools/install.ps1"
+        "packageIcon.png"
+      ]
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "sha512": "QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "type": "package",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net45/Newtonsoft.Json.Bson.dll",
+        "lib/net45/Newtonsoft.Json.Bson.pdb",
+        "lib/net45/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
+        "newtonsoft.json.bson.1.0.2.nupkg.sha512",
+        "newtonsoft.json.bson.nuspec"
       ]
     },
     "Npgsql/6.0.2": {
@@ -6468,79 +6531,6 @@
         "system.runtime.numerics.nuspec"
       ]
     },
-    "System.Runtime.Serialization.Primitives/4.1.1": {
-      "sha512": "HZ6Du5QrTG8MNJbf4e4qMO3JRAkIboGT5Fk804uZtg3Gq516S7hAqTm2UZKUHa7/6HUGdVy3AqMQKbns06G/cg==",
-      "type": "package",
-      "path": "system.runtime.serialization.primitives/4.1.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/net46/System.Runtime.Serialization.Primitives.dll",
-        "lib/netcore50/System.Runtime.Serialization.Primitives.dll",
-        "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/net46/System.Runtime.Serialization.Primitives.dll",
-        "ref/netcore50/System.Runtime.Serialization.Primitives.dll",
-        "ref/netcore50/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/netcore50/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/System.Runtime.Serialization.Primitives.dll",
-        "ref/netstandard1.0/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.0/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll",
-        "ref/netstandard1.3/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/netstandard1.3/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll",
-        "system.runtime.serialization.primitives.4.1.1.nupkg.sha512",
-        "system.runtime.serialization.primitives.nuspec"
-      ]
-    },
     "System.Security.Cryptography.Algorithms/4.3.0": {
       "sha512": "W1kd2Y8mYSCgc3ULTAZ0hOP2dSdG5YauTb1089T0/kRcN2MpSAW1izOFROrJgxSlMn3ArsgHXagigyi+ibhevg==",
       "type": "package",
@@ -7595,7 +7585,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.NET.Test.Sdk >= 16.11.0",
-      "Moq >= 4.16.1",
+      "Moq >= 4.17.2",
       "coverlet.collector >= 3.1.0",
       "if3250_2022_19_filantropi_backend >= 1.0.0",
       "xunit >= 2.4.1",
@@ -7603,34 +7593,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mfurq\\.nuget\\packages\\": {}
+    "/home/integeroverflow/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
+      "projectUniqueName": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
-      "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
-      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\obj\\",
+      "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj",
+      "packagesPath": "/home/integeroverflow/.nuget/packages/",
+      "outputPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mfurq\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/integeroverflow/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj": {
-              "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj"
+            "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj": {
+              "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj"
             }
           }
         }
@@ -7651,7 +7639,7 @@
           },
           "Moq": {
             "target": "Package",
-            "version": "[4.16.1, )"
+            "version": "[4.17.2, )"
           },
           "coverlet.collector": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -7685,7 +7673,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }
