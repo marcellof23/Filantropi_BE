@@ -1,4 +1,7 @@
 using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace if3250_2022_19_filantropi_backend.Models
 {
   public class User
@@ -16,5 +19,7 @@ namespace if3250_2022_19_filantropi_backend.Models
     public string? ImageUrl { get; set; }
 
     public int DonationAmount { get; set; }
+
+    //public virtual Donasi Donasi { get; set; }
   }
 }
