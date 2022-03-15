@@ -58,13 +58,15 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<User> GetById(long id)
     {
+
+      Console.WriteLine("PUNTEN");
+      Console.WriteLine(id);
       var user = await _context.Users.FindAsync(id);
 
       if (user == null)
       {
         return null;
       }
-
       return user;
     }
 
@@ -107,6 +109,7 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public bool UserExists(long id)
     {
+      Console.WriteLine(id);
       return _context.Users.Any(e => e.Id == id);
     }
 

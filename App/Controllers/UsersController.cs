@@ -46,12 +46,16 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // GET: api/Users/5
-    [Authorize]
+    //[Authorize]
     [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(long id)
+    public async Task<ActionResult> GetUser(long id)
     {
       var users = await _userService.GetById(id);
-      return Ok(users);
+      if (users == null)
+      {
+        return NotFound();
+      }
+      return Ok();
     }
 
     // PUT: api/Users/5
@@ -122,10 +126,6 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(new { message = "User removed successfully" });
     }
 
-    private bool UserExists(long id)
-    {
-      return _context.Users.Any(e => e.Id == id);
-    }
     private bool EmailExists(string email)
     {
       return _context.Users.Any(e => e.Email == email);

@@ -15,9 +15,6 @@ namespace Tests
     {
     }
 
-
-
-
     [Fact]
     public async Task GetUserById()
     {
