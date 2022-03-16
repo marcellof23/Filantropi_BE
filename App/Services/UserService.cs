@@ -22,8 +22,10 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     Task<int> UpdateUser(long id, User user);
 
-    Task<int> RemoveUser(long id);
+    Task<int> DeleteUser(long id);
     bool UserExists(long id);
+
+    bool EmailExists(string email);
   }
 
   public class UserService : IUserService
@@ -58,9 +60,6 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<User> GetById(long id)
     {
-
-      Console.WriteLine("PUNTEN");
-      Console.WriteLine(id);
       var user = await _context.Users.FindAsync(id);
 
       if (user == null)
@@ -72,6 +71,7 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<int> CreateUser(User user)
     {
+      Console.WriteLine("PUNTENNN");
       _context.Users.Add(user);
       return await _context.SaveChangesAsync();
     }
@@ -93,7 +93,7 @@ namespace if3250_2022_19_filantropi_backend.Services
       return await _context.SaveChangesAsync();
     }
 
-    public async Task<int> RemoveUser(long id)
+    public async Task<int> DeleteUser(long id)
     {
 
       var user = await _context.Users.FindAsync(id);
@@ -111,6 +111,11 @@ namespace if3250_2022_19_filantropi_backend.Services
     {
       Console.WriteLine(id);
       return _context.Users.Any(e => e.Id == id);
+    }
+
+    public bool EmailExists(string email)
+    {
+      return _context.Users.Any(e => e.Email == email);
     }
 
     //Register dengan add

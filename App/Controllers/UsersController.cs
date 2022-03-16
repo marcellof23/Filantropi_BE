@@ -17,12 +17,10 @@ namespace if3250_2022_19_filantropi_backend.Controllers
   public class UsersController : ControllerBase
   {
     private IUserService _userService;
-    private readonly DataContext _context;
 
     public UsersController(IUserService userService)
     {
       _userService = userService;
-      _context = userService.GetDataContext();
     }
 
     [HttpPost("authenticate")]
@@ -46,7 +44,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // GET: api/Users/5
-    //[Authorize]
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult> GetUser(long id)
     {
@@ -55,7 +53,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       {
         return NotFound();
       }
-      return Ok();
+      return Ok(users);
     }
 
     // PUT: api/Users/5
@@ -97,18 +95,15 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(User user)
     {
-      if (EmailExists(user.Email))
+      if (_userService.EmailExists(user.Email))
       {
         return BadRequest(new { message = "Email exists" });
       }
-      // _context.Users.Add(user);
-      // await _context.SaveChangesAsync();
       var user_created = await _userService.CreateUser(user);
       if (user_created != 0)
       {
         return Ok(user);
       }
-
       return BadRequest(new { message = "Please check your entity request" });
     }
 
@@ -117,18 +112,13 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(long id)
     {
-      var user_deleted = await _userService.RemoveUser(id);
+      var user_deleted = await _userService.DeleteUser(id);
       if (user_deleted == 0)
       {
         return BadRequest(new { message = "Please check your request id" });
       }
 
       return Ok(new { message = "User removed successfully" });
-    }
-
-    private bool EmailExists(string email)
-    {
-      return _context.Users.Any(e => e.Email == email);
     }
   }
 }
