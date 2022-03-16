@@ -7,7 +7,8 @@ namespace if3250_2022_19_filantropi_backend.Data
   {
     DbSet<User> Users { get; set; }
     DbSet<GalanganDana> GalanganDana { get; set; }
-
+    DbSet<Donasi> Donasi { get; set; }
+    DbSet<Doa> Doa { get; set; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
   }
 }
