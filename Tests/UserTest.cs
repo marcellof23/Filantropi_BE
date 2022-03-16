@@ -16,7 +16,7 @@ namespace Tests
     }
 
     [Fact]
-    public async Task GetUserById()
+    public async Task GetUserByIdTest()
     {
       var mock = new Mock<IUserService>();
 
@@ -35,8 +35,68 @@ namespace Tests
       UsersController u = new UsersController(mock.Object);
       var result = await u.GetUser(3);
 
-      Assert.IsType<OkResult>(result);
+      Assert.IsType<OkObjectResult>(result);
+      Assert.NotNull(result);
+    }
 
+    [Fact]
+    public async Task GetUsersTest()
+    {
+      var mock = new Mock<IUserService>();
+
+      var user1 = new User()
+      {
+        Id = 1,
+        Name = "testing4",
+        Email = "testing@gmail.com",
+        Password = "punten12345",
+        Role = "user",
+        ImageUrl = null,
+        DonationAmount = 1102,
+      };
+
+      var user2 = new User()
+      {
+        Id = 1,
+        Name = "testing5",
+        Email = "testing2@gmail.com",
+        Password = "punten12345",
+        Role = "user",
+        ImageUrl = null,
+        DonationAmount = 1102,
+      };
+
+      var users = new User[2] { user1, user2 };
+
+      mock.Setup(p => p.GetAll()).ReturnsAsync(users);
+      UsersController u = new UsersController(mock.Object);
+      var result = await u.GetUsers();
+
+      Assert.IsType<OkObjectResult>(result.Result);
+      Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task CreateUserFailTest()
+    {
+      var mock = new Mock<IUserService>();
+
+      var user = new User()
+      {
+        Id = 10,
+        Name = "testing4",
+        Email = "asdfasdf1@gmail.com",
+        Password = "punten12345",
+        Role = "user",
+        ImageUrl = null,
+        DonationAmount = 1102,
+      };
+
+      mock.Setup(p => p.CreateUser(user));
+      UsersController u = new UsersController(mock.Object);
+      var result = await u.RegisterUser(user);
+
+      Assert.IsType<BadRequestObjectResult>(result.Result);
       Assert.NotNull(result);
     }
   }
