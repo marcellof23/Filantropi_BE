@@ -77,26 +77,58 @@ namespace Tests
     }
 
     [Fact]
+    public async Task CreateUserSuccessTest()
+    {
+      var mock = new Mock<IUserService>();
+
+      var user = new User()
+      {
+        Name = "testing4",
+        Email = "afafafaf@gmail.com",
+        Password = "punten12345",
+        Role = "user",
+        DonationAmount = 1102,
+      };
+
+      mock.Setup(p => p.CreateUser(user)).ReturnsAsync(1);
+      UsersController u = new UsersController(mock.Object);
+      var result = await u.RegisterUser(user);
+
+      Assert.IsType<OkObjectResult>(result.Result);
+      Assert.NotNull(result);
+    }
+
+    [Fact]
     public async Task CreateUserFailTest()
     {
       var mock = new Mock<IUserService>();
 
       var user = new User()
       {
-        Id = 10,
         Name = "testing4",
-        Email = "asdfasdf1@gmail.com",
         Password = "punten12345",
         Role = "user",
-        ImageUrl = null,
         DonationAmount = 1102,
       };
 
-      mock.Setup(p => p.CreateUser(user));
+      mock.Setup(p => p.CreateUser(user)).ReturnsAsync(0);
       UsersController u = new UsersController(mock.Object);
       var result = await u.RegisterUser(user);
 
       Assert.IsType<BadRequestObjectResult>(result.Result);
+      Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task DeleteUserTest()
+    {
+      var mock = new Mock<IUserService>();
+
+      mock.Setup(p => p.DeleteUser(1)).ReturnsAsync(1);
+      UsersController u = new UsersController(mock.Object);
+      var result = await u.DeleteUser(1);
+
+      Assert.IsType<OkObjectResult>(result);
       Assert.NotNull(result);
     }
   }
