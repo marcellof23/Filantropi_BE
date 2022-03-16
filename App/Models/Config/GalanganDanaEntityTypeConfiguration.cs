@@ -32,10 +32,11 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
 
       builder.Property(b => b.ImageUrl)
       .HasColumnName("image_url");
-      
+
       builder.Property(b => b.Description)
       .IsRequired()
       .HasColumnName("description");
+
     }
   }
 }
