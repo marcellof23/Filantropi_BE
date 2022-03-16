@@ -236,3 +236,11 @@ D:/STEI/Sem6/PPL/filantropi/backend/Tests/bin/Debug/net6.0/App.pdb
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/if3250_2022_19_filantropi_backend.dll
 /home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/if3250_2022_19_filantropi_backend.pdb
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/EFCore.NamingConventions.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll
+/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll

@@ -17,21 +17,21 @@ namespace if3250_2022_19_filantropi_backend.Services
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     Task<IEnumerable<User>> GetAll();
     Task<User> GetById(long id);
+    Task<int> CreateUser(User user);
     DataContext GetDataContext();
 
-    Task<User> UpdateUser(User user, long id);
+    Task<int> UpdateUser(long id, User user);
 
+    Task<int> DeleteUser(long id);
     bool UserExists(long id);
+
+    bool EmailExists(string email);
   }
 
   public class UserService : IUserService
   {
     private readonly DataContext _context;
     // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-    private List<User> _users = new List<User>
-    {
-        new User { Id = 1, Email = "test@gmail.com", Password = "test" }
-    };
 
     private readonly AppSettings _appSettings;
 
@@ -66,39 +66,56 @@ namespace if3250_2022_19_filantropi_backend.Services
       {
         return null;
       }
-
       return user;
     }
 
-    public async Task<User> UpdateUser(User user, long id)
+    public async Task<int> CreateUser(User user)
     {
-      // var userToUpdate = await _context.Users
-      //  .FirstOrDefaultAsync(u => u.Id == id);
+      Console.WriteLine("PUNTENNN");
+      _context.Users.Add(user);
+      return await _context.SaveChangesAsync();
+    }
 
-      // if (await TryUpdateModelAsync<Course>(courseToUpdate,
-      //         "",
-      //         c => c.Credits, c => c.DepartmentID, c => c.Title))
-      // {
-      //   try
-      //   {
-      //     await _context.SaveChangesAsync();
-      //   }
-      //   catch (DbUpdateException /* ex */)
-      //   {
-      //     //Log the error (uncomment ex variable name and write a log.)
-      //     ModelState.AddModelError("", "Unable to save changes. " +
-      //         "Try again, and if the problem persists, " +
-      //         "see your system administrator.");
-      //   }
-      //   return user;
-      // }
+    public async Task<int> UpdateUser(long id, User user)
+    {
+      var local = _context.Set<User>()
+   .Local
+   .FirstOrDefault(entry => entry.Id.Equals(id));
 
-      return user;
+      // check if local is not null 
+      if (local != null)
+      {
+        _context.Entry(local).State = EntityState.Detached;
+      }
+
+      _context.Entry(user).State = EntityState.Modified;
+
+      return await _context.SaveChangesAsync();
+    }
+
+    public async Task<int> DeleteUser(long id)
+    {
+
+      var user = await _context.Users.FindAsync(id);
+      if (user == null)
+      {
+        return 0;
+      }
+
+      var isRemoved = _context.Users.Remove(user);
+
+      return await _context.SaveChangesAsync();
     }
 
     public bool UserExists(long id)
     {
+      Console.WriteLine(id);
       return _context.Users.Any(e => e.Id == id);
+    }
+
+    public bool EmailExists(string email)
+    {
+      return _context.Users.Any(e => e.Email == email);
     }
 
     //Register dengan add

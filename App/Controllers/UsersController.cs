@@ -17,12 +17,10 @@ namespace if3250_2022_19_filantropi_backend.Controllers
   public class UsersController : ControllerBase
   {
     private IUserService _userService;
-    private readonly DataContext _context;
 
     public UsersController(IUserService userService)
     {
       _userService = userService;
-      _context = userService.GetDataContext();
     }
 
     [HttpPost("authenticate")]
@@ -48,9 +46,13 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     // GET: api/Users/5
     [Authorize]
     [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(long id)
+    public async Task<ActionResult> GetUser(long id)
     {
       var users = await _userService.GetById(id);
+      if (users == null)
+      {
+        return NotFound();
+      }
       return Ok(users);
     }
 
@@ -65,21 +67,13 @@ namespace if3250_2022_19_filantropi_backend.Controllers
         return BadRequest();
       }
 
-      var local = _context.Set<User>()
-    .Local
-    .FirstOrDefault(entry => entry.Id.Equals(id));
-
-      // check if local is not null 
-      if (local != null)
-      {
-        _context.Entry(local).State = EntityState.Detached;
-      }
-
-      _context.Entry(user).State = EntityState.Modified;
-
       try
       {
-        await _context.SaveChangesAsync();
+        var user_updated = await _userService.UpdateUser(id, user);
+        if (user_updated == 0)
+        {
+          return BadRequest();
+        }
       }
       catch (DbUpdateConcurrencyException)
       {
@@ -93,21 +87,24 @@ namespace if3250_2022_19_filantropi_backend.Controllers
         }
       }
 
-      return NoContent();
+      return Ok(User);
     }
 
     // POST: api/Users
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<User>> PostUser(User user)
+    public async Task<ActionResult<User>> RegisterUser(User user)
     {
-      if (EmailExists(user.Email))
+      if (_userService.EmailExists(user.Email))
       {
         return BadRequest(new { message = "Email exists" });
       }
-      _context.Users.Add(user);
-      await _context.SaveChangesAsync();
-      return Ok(user);
+      var user_created = await _userService.CreateUser(user);
+      if (user_created != 0)
+      {
+        return Ok(user);
+      }
+      return BadRequest(new { message = "Please check your entity request" });
     }
 
     // DELETE: api/Users/5
@@ -115,25 +112,13 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(long id)
     {
-      var user = await _context.Users.FindAsync(id);
-      if (user == null)
+      var user_deleted = await _userService.DeleteUser(id);
+      if (user_deleted == 0)
       {
-        return NotFound();
+        return BadRequest(new { message = "Please check your request id" });
       }
 
-      _context.Users.Remove(user);
-      await _context.SaveChangesAsync();
-
-      return NoContent();
-    }
-
-    private bool UserExists(long id)
-    {
-      return _context.Users.Any(e => e.Id == id);
-    }
-    private bool EmailExists(string email)
-    {
-      return _context.Users.Any(e => e.Email == email);
+      return Ok(new { message = "User removed successfully" });
     }
   }
 }

@@ -11,102 +11,102 @@ using if3250_2022_19_filantropi_backend.Data;
 
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20220223090531_initial")]
-    partial class initial
+  [DbContext(typeof(DataContext))]
+  [Migration("20220223090531_initial")]
+  partial class initial
+  {
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+      modelBuilder
+          .HasAnnotation("ProductVersion", "6.0.2")
+          .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+      NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.GalanganDana", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
+      modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.GalanganDana", b =>
+          {
+            b.Property<long>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("bigint")
+                      .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("category");
+            b.Property<string>("Category")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("category");
 
-                    b.Property<DateTime>("Deadline")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("deadline");
+            b.Property<DateTime>("Deadline")
+                      .HasColumnType("timestamp with time zone")
+                      .HasColumnName("deadline");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
+            b.Property<string>("Description")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("description");
 
-                    b.Property<string>("EventTitle")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("title");
+            b.Property<string>("EventTitle")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("title");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("image_url");
+            b.Property<string>("ImageUrl")
+                      .HasColumnType("text")
+                      .HasColumnName("image_url");
 
-                    b.Property<int>("TargetFund")
-                        .HasColumnType("integer")
-                        .HasColumnName("targetfund");
+            b.Property<int>("TargetFund")
+                      .HasColumnType("integer")
+                      .HasColumnName("targetfund");
 
-                    b.HasKey("Id");
+            b.HasKey("Id");
 
-                    b.ToTable("galangan_dana", (string)null);
-                });
+            b.ToTable("galangan_dana", (string)null);
+          });
 
-            modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.User", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
+      modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.User", b =>
+          {
+            b.Property<long>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("bigint")
+                      .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("DonationAmount")
-                        .HasColumnType("integer")
-                        .HasColumnName("donation_amount");
+            b.Property<int>("DonationAmount")
+                      .HasColumnType("integer")
+                      .HasColumnName("donation_amount");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("email");
+            b.Property<string>("Email")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("email");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("image_url");
+            b.Property<string>("ImageUrl")
+                      .HasColumnType("text")
+                      .HasColumnName("image_url");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
+            b.Property<string>("Name")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("name");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("password");
+            b.Property<string>("Password")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("password");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("role");
+            b.Property<string>("Role")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("role");
 
-                    b.HasKey("Id");
+            b.HasKey("Id");
 
-                    b.ToTable("users", (string)null);
-                });
+            b.ToTable("users", (string)null);
+          });
 #pragma warning restore 612, 618
-        }
     }
+  }
 }
