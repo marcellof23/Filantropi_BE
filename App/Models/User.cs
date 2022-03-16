@@ -16,5 +16,7 @@ namespace if3250_2022_19_filantropi_backend.Models
     public string? ImageUrl { get; set; }
 
     public int DonationAmount { get; set; }
+
+    public float Saldo { get; set; }
   }
 }

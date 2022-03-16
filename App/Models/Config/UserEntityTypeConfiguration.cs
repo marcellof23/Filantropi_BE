@@ -36,6 +36,10 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
       builder.Property(b => b.DonationAmount)
       .IsRequired()
       .HasColumnName("donation_amount");
+
+      builder.Property(b => b.Saldo)
+      .IsRequired()
+      .HasColumnName("saldo");
     }
   }
 }
