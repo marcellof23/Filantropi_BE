@@ -23,6 +23,9 @@ builder.Services.AddMvc().AddNewtonsoftJson(options =>
 
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IGalanganDanaService, GalanganDanaService>();
+builder.Services.AddScoped<IDonasiService, DonasiService>();
+builder.Services.AddScoped<IDoaService, DoaService>();
 builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).UseSnakeCaseNamingConvention());
 builder.Services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
 
