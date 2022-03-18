@@ -12,8 +12,8 @@ using if3250_2022_19_filantropi_backend.Data;
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220314115150_initial")]
-    partial class initial
+    [Migration("20220318190813_TransactionHistory")]
+    partial class TransactionHistory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -133,6 +133,41 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                     b.ToTable("galangan_dana", (string)null);
                 });
 
+            modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.TransactionHistory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("date");
+
+                    b.Property<string>("DonasiId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("donasi_id");
+
+                    b.Property<string>("GalanganDanaId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("galangan_dana_id");
+
+                    b.Property<string>("Nominal")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("nominal");
+
+                    b.HasKey("Id")
+                        .HasName("pk_transaction_history");
+
+                    b.ToTable("transaction_history", (string)null);
+                });
+
             modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.User", b =>
                 {
                     b.Property<long>("Id")
@@ -169,6 +204,10 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("role");
+
+                    b.Property<float>("Saldo")
+                        .HasColumnType("real")
+                        .HasColumnName("saldo");
 
                     b.HasKey("Id")
                         .HasName("pk_users");

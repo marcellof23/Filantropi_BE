@@ -11,6 +11,8 @@ namespace if3250_2022_19_filantropi_backend.Data
     public DbSet<GalanganDana> GalanganDana { get; set; }
     public DbSet<Donasi> Donasi { get; set; }
     public DbSet<Doa> Doa { get; set; }
+
+    public DbSet<TransactionHistory> TransactionHistory { get; set; }
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
     }
@@ -25,6 +27,8 @@ namespace if3250_2022_19_filantropi_backend.Data
       modelBuilder.ApplyConfigurationsFromAssembly(typeof(DonasiEntityTypeConfiguration).Assembly);
 
       modelBuilder.ApplyConfigurationsFromAssembly(typeof(DoaEntityTypeConfiguration).Assembly);
+
+      modelBuilder.ApplyConfigurationsFromAssembly(typeof(TransactionHistoryTypeConfiguration).Assembly);
     }
     #endregion
   }
