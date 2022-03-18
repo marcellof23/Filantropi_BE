@@ -12,7 +12,7 @@ using if3250_2022_19_filantropi_backend.Data;
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220314115150_initial")]
+    [Migration("20220317134859_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,9 +38,9 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<long>("DonasiId")
+                    b.Property<long>("GalangDanaId")
                         .HasColumnType("bigint")
-                        .HasColumnName("donasiId");
+                        .HasColumnName("galangDanaId");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint")
@@ -49,8 +49,8 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                     b.HasKey("Id")
                         .HasName("pk_doa");
 
-                    b.HasIndex("DonasiId")
-                        .HasDatabaseName("ix_doa_donasi_id");
+                    b.HasIndex("GalangDanaId")
+                        .HasDatabaseName("ix_doa_galang_dana_id");
 
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_doa_user_id");
@@ -170,6 +170,10 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .HasColumnType("text")
                         .HasColumnName("role");
 
+                    b.Property<float>("Saldo")
+                        .HasColumnType("real")
+                        .HasColumnName("saldo");
+
                     b.HasKey("Id")
                         .HasName("pk_users");
 
@@ -178,12 +182,12 @@ namespace if3250_2022_19_filantropi_backend.Migrations
 
             modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.Doa", b =>
                 {
-                    b.HasOne("if3250_2022_19_filantropi_backend.Models.Donasi", "Donasi")
+                    b.HasOne("if3250_2022_19_filantropi_backend.Models.GalanganDana", "GalanganDana")
                         .WithMany()
-                        .HasForeignKey("DonasiId")
+                        .HasForeignKey("GalangDanaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_doa_donasi_donasi_id");
+                        .HasConstraintName("fk_doa_galangan_dana_galang_dana_id");
 
                     b.HasOne("if3250_2022_19_filantropi_backend.Models.User", "User")
                         .WithMany()
@@ -192,7 +196,7 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_doa_users_user_id");
 
-                    b.Navigation("Donasi");
+                    b.Navigation("GalanganDana");
 
                     b.Navigation("User");
                 });

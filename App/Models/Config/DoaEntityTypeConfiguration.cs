@@ -14,9 +14,9 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
             .HasColumnName("id")
             .ValueGeneratedOnAdd();
 
-            builder.Property(b => b.DonasiId)
+            builder.Property(b => b.GalangDanaId)
             .IsRequired()
-            .HasColumnName("donasiId");
+            .HasColumnName("galangDanaId");
 
             builder.Property(b => b.UserId)
             .IsRequired()

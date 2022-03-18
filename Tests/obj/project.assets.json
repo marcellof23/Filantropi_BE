@@ -7598,11 +7598,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\Tests\\Tests.csproj",
+      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\Tests\\Tests.csproj",
+      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
       "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
-      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\Tests\\obj\\",
+      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mfurq\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7619,8 +7619,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj": {
-              "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj"
+            "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj": {
+              "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj"
             }
           }
         }

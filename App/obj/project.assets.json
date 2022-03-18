@@ -6460,11 +6460,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
+      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
       "projectName": "if3250_2022_19_filantropi_backend",
-      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
+      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
       "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
-      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Testing\\filantropi_backend\\App\\obj\\",
+      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mfurq\\AppData\\Roaming\\NuGet\\NuGet.Config",

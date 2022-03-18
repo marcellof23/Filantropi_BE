@@ -33,7 +33,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
     //Get api/galang_dana/id
     [HttpGet("{id}")]
-    public async Task<ActionResult<GalanganDana>> GetGalanganDana(long id)
+    public async Task<ActionResult> GetGalanganDana(long id)
     {
       var galangan_dana = await _galanganDanaService.GetById(id);
 
@@ -83,8 +83,12 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPost]
     public async Task<ActionResult<GalanganDana>> PostGalangDana(GalanganDana galangan_dana)
     {
-      await _galanganDanaService.CreateGalanganDana(galangan_dana);
-      return Ok(galangan_dana);
+        var galangan_dana_created = await _galanganDanaService.CreateGalanganDana(galangan_dana);
+        if (galangan_dana_created != 0)
+        {
+            return Ok(galangan_dana);
+        }
+        return BadRequest(new { message = "Please check your entity request" });
     }
   }
 }
