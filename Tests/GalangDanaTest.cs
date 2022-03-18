@@ -104,14 +104,33 @@ namespace Tests
     {
     var mock = new Mock<IGalanganDanaService>();
 
-    var galangDana = new GalanganDana()
-    {
-        Category = "Pendidikan",
-    };
+        var galangDana1 = new GalanganDana()
+        {
+            Id = 3,
+            EventTitle = "AcaraGalang1",
+            Category = "Pendidikan",
+            TargetFund = 1000000,
+            Deadline = System.DateTime.Now,
+            Description = "Test event",
+            ImageUrl = "https://4.bp.blogspot.com/-XegwgOFLGsY/VYS-dEgxTmI/AAAAAAAAumI/vS-SyCItdYk/w1200-h630-p-k-no-nu/thumbnail_saikoro.jpg"
+        };
 
-    mock.Setup(p => p.CreateGalanganDana(galangDana)).ReturnsAsync(1);
-    GalanganDanaController u = new GalanganDanaController(mock.Object);
-    var result = await u.PostGalangDana(galangDana);
+        var galangDana2 = new GalanganDana()
+        {
+            Id = 3,
+            EventTitle = "AcaraGalang2",
+            Category = "Pendidikan",
+            TargetFund = 1000000,
+            Deadline = System.DateTime.Now,
+            Description = "Test event",
+            ImageUrl = "https://4.bp.blogspot.com/-XegwgOFLGsY/VYS-dEgxTmI/AAAAAAAAumI/vS-SyCItdYk/w1200-h630-p-k-no-nu/thumbnail_saikoro.jpg"
+        };
+
+        var galanganDanas = new GalanganDana[2] { galangDana1, galangDana2 };
+
+        mock.Setup(p => p.GetAll()).ReturnsAsync(galanganDanas);
+        GalanganDanaController u = new GalanganDanaController(mock.Object);
+        var result = await u.GetGalanganDanas();
 
       Assert.IsType<BadRequestObjectResult>(result.Result);
       Assert.NotNull(result);
