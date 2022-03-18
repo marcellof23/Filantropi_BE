@@ -98,22 +98,5 @@ namespace Tests
       Assert.IsType<OkObjectResult>(result.Result);
       Assert.NotNull(result);
     }
-
-    [Fact]
-    public async Task CreateGalangDanaFailTest()
-    {
-    var mock = new Mock<IGalanganDanaService>();
-
-        var galangDana = new GalanganDana()
-        {
-            Category = "Pendidikan",
-        };
-        mock.Setup(p => p.CreateGalanganDana(galangDana)).ReturnsAsync(1);
-        GalanganDanaController u = new GalanganDanaController(mock.Object);
-        var result = await u.PostGalangDana(galangDana);
-
-     Assert.IsType<BadRequestObjectResult>(result.Result);
-      Assert.NotNull(result);
-    }
   }
 }
