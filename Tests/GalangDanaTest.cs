@@ -106,7 +106,6 @@ namespace Tests
 
     var galangDana = new GalanganDana()
     {
-        EventTitle = "AcaraGalang1",
         Category = "Pendidikan",
     };
 
