@@ -114,7 +114,6 @@ namespace Tests
     GalanganDanaController u = new GalanganDanaController(mock.Object);
     var result = await u.PostGalangDana(galangDana);
 
-
       Assert.IsType<BadRequestObjectResult>(result.Result);
       Assert.NotNull(result);
     }
