@@ -33,7 +33,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
     //Get api/galang_dana/id
     [HttpGet("{id}")]
-    public async Task<ActionResult<GalanganDana>> GetGalanganDana(long id)
+    public async Task<ActionResult> GetGalanganDana(long id)
     {
       var galangan_dana = await _galanganDanaService.GetById(id);
 
