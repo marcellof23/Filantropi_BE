@@ -131,12 +131,17 @@ namespace if3250_2022_19_filantropi_backend.Services
       // generate token that is valid for 7 days
       var tokenHandler = new JwtSecurityTokenHandler();
       var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+      var claim_email = new Claim("email", user.Email.ToString());
+      var claim_role = new Claim("role", user.Role.ToString());
+
       var tokenDescriptor = new SecurityTokenDescriptor
       {
-        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-        Expires = DateTime.UtcNow.AddDays(7),
+        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()), claim_email, claim_role }),
+        Expires = DateTime.UtcNow.AddMinutes(10),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
+
       var token = tokenHandler.CreateToken(tokenDescriptor);
       return tokenHandler.WriteToken(token);
     }
