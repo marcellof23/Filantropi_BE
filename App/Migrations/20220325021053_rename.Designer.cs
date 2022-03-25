@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using if3250_2022_19_filantropi_backend.Data;
@@ -11,9 +12,10 @@ using if3250_2022_19_filantropi_backend.Data;
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220325021053_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,11 +40,11 @@ namespace if3250_2022_19_filantropi_backend.Migrations
 
                     b.Property<long>("GalangDanaId")
                         .HasColumnType("bigint")
-                        .HasColumnName("galangDanaId");
+                        .HasColumnName("galangdana_id");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
 
                     b.HasKey("Id")
                         .HasName("pk_doa");
@@ -71,11 +73,11 @@ namespace if3250_2022_19_filantropi_backend.Migrations
 
                     b.Property<long>("GalangDanaId")
                         .HasColumnType("bigint")
-                        .HasColumnName("galangDanaId");
+                        .HasColumnName("galangdana_id");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
 
                     b.HasKey("Id")
                         .HasName("pk_donasi");
