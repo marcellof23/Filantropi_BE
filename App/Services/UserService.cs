@@ -50,7 +50,7 @@ namespace if3250_2022_19_filantropi_backend.Services
       // authentication successful so generate jwt token
       var token = generateJwtToken(user);
 
-      return new AuthenticateResponse(user, token);
+      return new AuthenticateResponse(user.WithoutPassword(), token);
     }
 
     public async Task<IEnumerable<User>> GetAll()
@@ -146,5 +146,6 @@ namespace if3250_2022_19_filantropi_backend.Services
       var token = tokenHandler.CreateToken(tokenDescriptor);
       return tokenHandler.WriteToken(token);
     }
+
   }
 }
