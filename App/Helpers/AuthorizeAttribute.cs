@@ -20,7 +20,7 @@ namespace if3250_2022_19_filantropi_backend.Helpers
     {
       var user = (User)context.HttpContext.Items["User"];
       // var user = true;
-      if (user == null)
+      if (user == null || (_roles.Any() && !_roles.Contains(user.Role)))
       {
         // not logged in
         context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };

@@ -11,7 +11,7 @@ namespace if3250_2022_19_filantropi_backend.Models
     //[JsonIgnore]
     public string Password { get; set; } = default!;
 
-    public string Role { get; set; } = default!;
+    public Role Role { get; set; } = default!;
 
     public string? ImageUrl { get; set; }
 

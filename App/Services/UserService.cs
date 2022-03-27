@@ -71,7 +71,6 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<int> CreateUser(User user)
     {
-      Console.WriteLine("PUNTENNN");
       _context.Users.Add(user);
       return await _context.SaveChangesAsync();
     }

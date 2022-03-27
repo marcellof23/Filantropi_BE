@@ -52,7 +52,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // GET: api/Users
-    [Authorize]
+    [Authorize(Role.Admin)]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
@@ -112,7 +112,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(User user)
     {
-      user.Role = "user";
+      user.Role = Role.User;
       if (_userService.EmailExists(user.Email))
       {
         return BadRequest(new { message = "Email exists" });
