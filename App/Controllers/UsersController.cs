@@ -23,6 +23,22 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       _userService = userService;
     }
 
+    public Boolean IsAdmin()
+    {
+      Boolean isAdmin = false;
+      var countProp = 0;
+      foreach (var user in HttpContext.Items["User"].GetType().GetProperties())
+      {
+        var user_data = user.GetValue(HttpContext.Items["User"]);
+        countProp += 1;
+        if (countProp == 5 && user_data == "admin")
+        {
+          isAdmin = true;
+        }
+      }
+      return isAdmin;
+    }
+
     [HttpPost("authenticate")]
     public IActionResult Authenticate(AuthenticateRequest model)
     {
@@ -95,6 +111,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(User user)
     {
+      user.Role = "user";
       if (_userService.EmailExists(user.Email))
       {
         return BadRequest(new { message = "Email exists" });

@@ -134,10 +134,11 @@ namespace if3250_2022_19_filantropi_backend.Services
 
       var claim_email = new Claim("email", user.Email.ToString());
       var claim_role = new Claim("role", user.Role.ToString());
+      var claim_id = new Claim("id", user.Id.ToString());
 
       var tokenDescriptor = new SecurityTokenDescriptor
       {
-        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()), claim_email, claim_role }),
+        Subject = new ClaimsIdentity(new[] { claim_id, claim_email, claim_role }),
         Expires = DateTime.UtcNow.AddMinutes(10),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
