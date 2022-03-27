@@ -16,11 +16,6 @@ namespace if3250_2022_19_filantropi_backend.Services
   {
     Task<IEnumerable<TransactionHistory>> GetAll();
     Task<TransactionHistory> GetById(long id);
-    Task<int> CreateTransactionHistory(TransactionHistory transaction_history);
-
-    Task<int> UpdateTransactionHistory(long id, TransactionHistory transaction_history);
-
-    Task<int> DeleteTransactionHistory(long id);
   }
 
   public class TransactionHistoryService : ITransactionHistoryService
@@ -50,43 +45,6 @@ namespace if3250_2022_19_filantropi_backend.Services
         return null;
       }
       return transaction_history;
-    }
-
-    public async Task<int> CreateTransactionHistory(TransactionHistory transaction_history)
-    {
-      _context.TransactionHistory.Add(transaction_history);
-      return await _context.SaveChangesAsync();
-    }
-
-    public async Task<int> UpdateTransactionHistory(long id, TransactionHistory transaction_history)
-    {
-      var local = _context.Set<TransactionHistory>()
-   .Local
-   .FirstOrDefault(entry => entry.Id.Equals(id));
-
-      // check if local is not null 
-      if (local != null)
-      {
-        _context.Entry(local).State = EntityState.Detached;
-      }
-
-      _context.Entry(transaction_history).State = EntityState.Modified;
-
-      return await _context.SaveChangesAsync();
-    }
-
-    public async Task<int> DeleteTransactionHistory(long id)
-    {
-
-      var transaction_history = await _context.TransactionHistory.FindAsync(id);
-      if (transaction_history == null)
-      {
-        return 0;
-      }
-
-      var isRemoved = _context.TransactionHistory.Remove(transaction_history);
-
-      return await _context.SaveChangesAsync();
     }
   }
 }
