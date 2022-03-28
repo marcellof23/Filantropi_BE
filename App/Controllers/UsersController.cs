@@ -35,7 +35,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // GET: api/Users
-    [Authorize(Role.Admin)]
+    [Authorize(Role.Admin, Role.User)]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
