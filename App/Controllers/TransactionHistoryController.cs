@@ -12,7 +12,7 @@ using if3250_2022_19_filantropi_backend.Services;
 
 namespace if3250_2022_19_filantropi_backend.Controllers
 {
-  [Route("api/galang_dana")]
+  [Route("api/history")]
   [ApiController]
   public class TransactionHistoryController : ControllerBase
   {
@@ -23,7 +23,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       _transactionHistoryService = transactionHistoryService;
     }
 
-    //Get api/galang_dana
+    //Get api/history
     [HttpGet]
     public async Task<ActionResult<IEnumerable<GalanganDana>>> GetTransactionHistorys()
     {
@@ -31,7 +31,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(transactionHistory);
     }
 
-    //Get api/galang_dana/id
+    //Get api/history/id
     [HttpGet("{id}")]
     public async Task<ActionResult<GalanganDana>> GetTransactionHistory(long id)
     {

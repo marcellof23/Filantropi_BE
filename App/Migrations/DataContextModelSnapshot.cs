@@ -121,12 +121,23 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
+
                     b.Property<int>("TargetFund")
                         .HasColumnType("integer")
                         .HasColumnName("targetfund");
 
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
                     b.HasKey("Id")
                         .HasName("pk_galangan_dana");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_galangan_dana_user_id");
 
                     b.ToTable("galangan_dana", (string)null);
                 });
@@ -251,6 +262,18 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .HasConstraintName("fk_donasi_users_user_id");
 
                     b.Navigation("GalanganDana");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.GalanganDana", b =>
+                {
+                    b.HasOne("if3250_2022_19_filantropi_backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_galangan_dana_users_user_id");
 
                     b.Navigation("User");
                 });

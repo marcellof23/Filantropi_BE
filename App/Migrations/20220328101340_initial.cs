@@ -6,28 +6,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
-    public partial class initial_create : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "galangan_dana",
-                columns: table => new
-                {
-                    id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    title = table.Column<string>(type: "text", nullable: false),
-                    category = table.Column<string>(type: "text", nullable: false),
-                    targetfund = table.Column<int>(type: "integer", nullable: false),
-                    deadline = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    description = table.Column<string>(type: "text", nullable: false),
-                    image_url = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_galangan_dana", x => x.id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "transaction_history",
                 columns: table => new
@@ -61,6 +43,32 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_users", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "galangan_dana",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    title = table.Column<string>(type: "text", nullable: false),
+                    category = table.Column<string>(type: "text", nullable: false),
+                    targetfund = table.Column<int>(type: "integer", nullable: false),
+                    deadline = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    image_url = table.Column<string>(type: "text", nullable: true),
+                    status = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_galangan_dana", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_galangan_dana_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,6 +143,11 @@ namespace if3250_2022_19_filantropi_backend.Migrations
             migrationBuilder.CreateIndex(
                 name: "ix_donasi_user_id",
                 table: "donasi",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_galangan_dana_user_id",
+                table: "galangan_dana",
                 column: "user_id");
         }
 
