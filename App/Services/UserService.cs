@@ -50,7 +50,7 @@ namespace if3250_2022_19_filantropi_backend.Services
       // authentication successful so generate jwt token
       var token = generateJwtToken(user);
 
-      return new AuthenticateResponse(user, token);
+      return new AuthenticateResponse(user.WithoutPassword(), token);
     }
 
     public async Task<IEnumerable<User>> GetAll()
@@ -71,7 +71,6 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<int> CreateUser(User user)
     {
-      Console.WriteLine("PUNTENNN");
       _context.Users.Add(user);
       return await _context.SaveChangesAsync();
     }
@@ -131,14 +130,21 @@ namespace if3250_2022_19_filantropi_backend.Services
       // generate token that is valid for 7 days
       var tokenHandler = new JwtSecurityTokenHandler();
       var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+      var claim_email = new Claim("email", user.Email.ToString());
+      var claim_role = new Claim("role", user.Role.ToString());
+      var claim_id = new Claim("id", user.Id.ToString());
+
       var tokenDescriptor = new SecurityTokenDescriptor
       {
-        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-        Expires = DateTime.UtcNow.AddDays(7),
+        Subject = new ClaimsIdentity(new[] { claim_id, claim_email, claim_role }),
+        Expires = DateTime.UtcNow.AddMinutes(10),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
+
       var token = tokenHandler.CreateToken(tokenDescriptor);
       return tokenHandler.WriteToken(token);
     }
+
   }
 }

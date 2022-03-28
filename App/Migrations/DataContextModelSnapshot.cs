@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using if3250_2022_19_filantropi_backend.Data;
@@ -12,10 +11,9 @@ using if3250_2022_19_filantropi_backend.Data;
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220325021053_initial")]
-    partial class initial
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,6 +129,41 @@ namespace if3250_2022_19_filantropi_backend.Migrations
                         .HasName("pk_galangan_dana");
 
                     b.ToTable("galangan_dana", (string)null);
+                });
+
+            modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.TransactionHistory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("date");
+
+                    b.Property<string>("DonasiId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("donasi_id");
+
+                    b.Property<string>("GalanganDanaId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("galangan_dana_id");
+
+                    b.Property<string>("Nominal")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("nominal");
+
+                    b.HasKey("Id")
+                        .HasName("pk_transaction_history");
+
+                    b.ToTable("transaction_history", (string)null);
                 });
 
             modelBuilder.Entity("if3250_2022_19_filantropi_backend.Models.User", b =>

@@ -10,7 +10,7 @@ using if3250_2022_19_filantropi_backend.Controllers;
 namespace Tests
 {
   public class GalangDanaTest
-    {
+  {
     public GalangDanaTest()
     {
     }
@@ -44,8 +44,8 @@ namespace Tests
     {
       var mock = new Mock<IGalanganDanaService>();
 
-    var galangDana1 = new GalanganDana()
-    {
+      var galangDana1 = new GalanganDana()
+      {
         Id = 3,
         EventTitle = "AcaraGalang1",
         Category = "Pendidikan",
@@ -53,10 +53,10 @@ namespace Tests
         Deadline = System.DateTime.Now,
         Description = "Test event",
         ImageUrl = "https://4.bp.blogspot.com/-XegwgOFLGsY/VYS-dEgxTmI/AAAAAAAAumI/vS-SyCItdYk/w1200-h630-p-k-no-nu/thumbnail_saikoro.jpg"
-    };
+      };
 
-    var galangDana2 = new GalanganDana()
-    {
+      var galangDana2 = new GalanganDana()
+      {
         Id = 4,
         EventTitle = "AcaraGalang2",
         Category = "Pendidikan",
@@ -64,7 +64,7 @@ namespace Tests
         Deadline = System.DateTime.Now,
         Description = "Test event",
         ImageUrl = "https://4.bp.blogspot.com/-XegwgOFLGsY/VYS-dEgxTmI/AAAAAAAAumI/vS-SyCItdYk/w1200-h630-p-k-no-nu/thumbnail_saikoro.jpg"
-    };
+      };
 
       var galanganDanas = new GalanganDana[2] { galangDana1, galangDana2 };
 
@@ -81,15 +81,15 @@ namespace Tests
     {
       var mock = new Mock<IGalanganDanaService>();
 
-    var galangDana = new GalanganDana()
-    {
+      var galangDana = new GalanganDana()
+      {
         EventTitle = "AcaraGalang1",
         Category = "Pendidikan",
         TargetFund = 1000000,
         Deadline = System.DateTime.Now,
         Description = "Test event",
         ImageUrl = "https://4.bp.blogspot.com/-XegwgOFLGsY/VYS-dEgxTmI/AAAAAAAAumI/vS-SyCItdYk/w1200-h630-p-k-no-nu/thumbnail_saikoro.jpg"
-    };
+      };
 
       mock.Setup(p => p.CreateGalanganDana(galangDana)).ReturnsAsync(1);
       GalanganDanaController u = new GalanganDanaController(mock.Object);
