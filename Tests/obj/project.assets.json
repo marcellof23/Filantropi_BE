@@ -7598,19 +7598,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj",
       "projectName": "Tests",
       "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj",
       "packagesPath": "/home/integeroverflow/.nuget/packages/",
       "outputPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/obj/",
-=======
-      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
-      "projectName": "Tests",
-      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
-      "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
-      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\obj\\",
->>>>>>> 5459176d1a0e17b14cc507a9ff1eb096f4ee7ff9
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/integeroverflow/.nuget/NuGet/NuGet.Config"
@@ -7625,13 +7617,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-<<<<<<< HEAD
             "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj": {
               "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj"
-=======
-            "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj": {
-              "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj"
->>>>>>> 5459176d1a0e17b14cc507a9ff1eb096f4ee7ff9
             }
           }
         }
@@ -7689,5 +7676,13 @@
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

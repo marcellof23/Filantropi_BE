@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "2IaZ2oMYeCn/A5kKMAXf0bYLcKEKBr/TDeiuUw/MJAIqQZNABr85LVg7rbeFuYcjffs+zJjVCFPv/ljAJsxr6w==",
   "success": true,
   "projectFilePath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj",
-=======
-  "dgSpecHash": "MIrl9fx/paZ3ElvW+GV6V/eqsmsOKxchno6832VaBfJLUHs+PF4TqY63sdI+FSH0ypOBQCbtMHjUft3E08ek8Q==",
-  "success": true,
-  "projectFilePath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
->>>>>>> 5459176d1a0e17b14cc507a9ff1eb096f4ee7ff9
   "expectedPackageFiles": [
     "/home/integeroverflow/.nuget/packages/castle.core/4.4.1/castle.core.4.4.1.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/coverlet.collector/3.1.0/coverlet.collector.3.1.0.nupkg.sha512",
@@ -144,5 +138,12 @@
     "/home/integeroverflow/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
     "/home/integeroverflow/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
