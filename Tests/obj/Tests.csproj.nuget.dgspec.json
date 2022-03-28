@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
         "packagesPath": "/home/integeroverflow/.nuget/packages/",
         "outputPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/obj/",
+=======
+    "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
+        "projectName": "if3250_2022_19_filantropi_backend",
+        "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
+        "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
+        "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\obj\\",
+>>>>>>> 5459176d1a0e17b14cc507a9ff1eb096f4ee7ff9
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/integeroverflow/.nuget/NuGet/NuGet.Config"
@@ -111,6 +125,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -119,6 +134,16 @@
         "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/Tests.csproj",
         "packagesPath": "/home/integeroverflow/.nuget/packages/",
         "outputPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/Tests/obj/",
+=======
+    "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
+        "projectName": "Tests",
+        "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
+        "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\Tests\\obj\\",
+>>>>>>> 5459176d1a0e17b14cc507a9ff1eb096f4ee7ff9
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/integeroverflow/.nuget/NuGet/NuGet.Config"
@@ -133,8 +158,13 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj": {
                 "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj"
+=======
+              "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj": {
+                "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj"
+>>>>>>> 5459176d1a0e17b14cc507a9ff1eb096f4ee7ff9
               }
             }
           }
