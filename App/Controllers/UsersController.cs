@@ -44,7 +44,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // GET: api/Users/5
-    [Authorize]
+    [Authorize(Role.User)]
     [HttpGet("{id}")]
     public async Task<ActionResult> GetUser(long id)
     {
