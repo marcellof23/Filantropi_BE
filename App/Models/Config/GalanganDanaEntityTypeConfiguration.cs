@@ -37,13 +37,13 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
       .IsRequired()
       .HasColumnName("description");
 
-        builder.Property(b => b.Status)
-        .IsRequired()
-        .HasColumnName("status");
+      builder.Property(b => b.Status)
+      .IsRequired()
+     .HasConversion<string>();
 
-        builder.Property(b => b.UserId)
-        .IsRequired()
-        .HasColumnName("user_id");
+      builder.Property(b => b.UserId)
+      .IsRequired()
+      .HasColumnName("user_id");
     }
   }
 }

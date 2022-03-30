@@ -15,6 +15,7 @@ namespace if3250_2022_19_filantropi_backend.Services
   public interface IGalanganDanaService
   {
     Task<IEnumerable<GalanganDana>> GetAll();
+    Task<IEnumerable<GalanganDana>> GetByQuery(long userId, string status);
     Task<GalanganDana> GetById(long id);
     Task<int> CreateGalanganDana(GalanganDana galangandana);
     DataContext GetDataContext();
@@ -24,7 +25,7 @@ namespace if3250_2022_19_filantropi_backend.Services
   }
 
   public class GalanganDanaService : IGalanganDanaService
-    {
+  {
     private readonly DataContext _context;
     private readonly AppSettings _appSettings;
 
@@ -32,6 +33,27 @@ namespace if3250_2022_19_filantropi_backend.Services
     {
       _appSettings = appSettings.Value;
       _context = context;
+    }
+
+    public async Task<IEnumerable<GalanganDana>> GetByQuery(long userId, string status)
+    {
+
+      var query = from s in _context.GalanganDana
+                  select s;
+
+      query = query.OrderByDescending(s => s.Deadline);
+
+      if (userId != 0)
+      {
+        query = query.Where(s => s.UserId == userId);
+      }
+
+      if (status != "")
+      {
+        query.Where(s => s.Status.Equals(0));
+      }
+
+      return await query.ToListAsync();
     }
 
     public async Task<IEnumerable<GalanganDana>> GetAll()
