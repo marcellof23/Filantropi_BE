@@ -15,6 +15,7 @@ namespace if3250_2022_19_filantropi_backend.Data
     public DbSet<TransactionHistory> TransactionHistory { get; set; }
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
+
     }
 
     #region Required
