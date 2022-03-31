@@ -6455,24 +6455,26 @@
     ]
   },
   "packageFolders": {
-    "/home/integeroverflow/.nuget/packages/": {}
+    "C:\\Users\\mfurq\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
+      "projectUniqueName": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
       "projectName": "if3250_2022_19_filantropi_backend",
-      "projectPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/if3250_2022_19_filantropi_backend.csproj",
-      "packagesPath": "/home/integeroverflow/.nuget/packages/",
-      "outputPath": "/home/integeroverflow/Semester6/PPL/Project/filantropi-be/App/obj/",
+      "projectPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\if3250_2022_19_filantropi_backend.csproj",
+      "packagesPath": "C:\\Users\\mfurq\\.nuget\\packages\\",
+      "outputPath": "C:\\Kuliah\\Semester6\\PPL\\Repo\\Main\\filantropi_backend\\App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/integeroverflow/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mfurq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6560,7 +6562,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

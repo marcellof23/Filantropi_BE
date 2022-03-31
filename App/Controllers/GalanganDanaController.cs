@@ -23,13 +23,15 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       _galanganDanaService = galanganDanaService;
     }
 
+    /*
     //Get api/galang_dana
-    // [HttpGet]
-    // public async Task<ActionResult<IEnumerable<GalanganDana>>> GetGalanganDanas()
-    // {
-    //   var galanganDana = await _galanganDanaService.GetAll();
-    //   return Ok(galanganDana);
-    // }
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<GalanganDana>>> GetGalanganDanas()
+    {
+        var galanganDana = await _galanganDanaService.GetAll();
+        return Ok(galanganDana);
+    }
+    */
 
     //Get api/galang_dana
     [HttpGet]
@@ -97,6 +99,27 @@ namespace if3250_2022_19_filantropi_backend.Controllers
         return Ok(galangan_dana);
       }
       return BadRequest(new { message = "Please check your entity request" });
+    }
+
+    //Get api/galang_dana/approve/{id}
+    //[Route("api/galang_dana/approve/{id}")]
+    [HttpGet("approve/{id}")]
+    public async Task<ActionResult<IEnumerable<GalanganDana>>> ApproveGalangDana(long id)
+    {
+        var galangan_dana = await _galanganDanaService.GetById(id);
+        galangan_dana.Status = StatusGalang.Active;
+        await PutGalanganDana(id, galangan_dana);
+        return Ok(galangan_dana);
+    }
+
+    //Get api/galang_dana/deny
+    [HttpGet("deny/{id}")]
+    public async Task<ActionResult<IEnumerable<GalanganDana>>> DenyGalangDana(long id)
+    {
+        var galangan_dana = await _galanganDanaService.GetById(id);
+        galangan_dana.Status = StatusGalang.Denied;
+        await PutGalanganDana(id, galangan_dana);
+        return Ok(galangan_dana);
     }
   }
 }
