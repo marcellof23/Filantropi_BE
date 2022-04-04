@@ -35,7 +35,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     }
 
     // GET: api/Users
-    [Authorize]
+    [Authorize(Role.Admin)]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
@@ -95,6 +95,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(User user)
     {
+      user.Role = Role.User;
       if (_userService.EmailExists(user.Email))
       {
         return BadRequest(new { message = "Email exists" });
@@ -102,7 +103,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       var user_created = await _userService.CreateUser(user);
       if (user_created != 0)
       {
-        return Ok(user);
+        return Ok(user.WithoutPassword());
       }
       return BadRequest(new { message = "Please check your entity request" });
     }

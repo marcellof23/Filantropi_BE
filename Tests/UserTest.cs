@@ -26,7 +26,7 @@ namespace Tests
         Name = "testing4",
         Email = "testing@gmail.com",
         Password = "punten12345",
-        Role = "user",
+        Role = Role.User,
         ImageUrl = null,
         DonationAmount = 1102,
       };
@@ -50,7 +50,7 @@ namespace Tests
         Name = "testing4",
         Email = "testing@gmail.com",
         Password = "punten12345",
-        Role = "user",
+        Role = Role.User,
         ImageUrl = null,
         DonationAmount = 1102,
       };
@@ -61,7 +61,7 @@ namespace Tests
         Name = "testing5",
         Email = "testing2@gmail.com",
         Password = "punten12345",
-        Role = "user",
+        Role = Role.User,
         ImageUrl = null,
         DonationAmount = 1102,
       };
@@ -86,7 +86,7 @@ namespace Tests
         Name = "testing4",
         Email = "afafafaf@gmail.com",
         Password = "punten12345",
-        Role = "user",
+        Role = Role.User,
         DonationAmount = 1102,
       };
 
@@ -107,7 +107,7 @@ namespace Tests
       {
         Name = "testing4",
         Password = "punten12345",
-        Role = "user",
+        Role = Role.User,
         DonationAmount = 1102,
       };
 

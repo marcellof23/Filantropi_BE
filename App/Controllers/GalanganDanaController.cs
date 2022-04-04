@@ -20,15 +20,23 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
     public GalanganDanaController(IGalanganDanaService galanganDanaService)
     {
-         _galanganDanaService = galanganDanaService;
+      _galanganDanaService = galanganDanaService;
     }
 
     //Get api/galang_dana
+    // [HttpGet]
+    // public async Task<ActionResult<IEnumerable<GalanganDana>>> GetGalanganDanas()
+    // {
+    //   var galanganDana = await _galanganDanaService.GetAll();
+    //   return Ok(galanganDana);
+    // }
+
+    //Get api/galang_dana
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<GalanganDana>>> GetGalanganDanas()
+    public async Task<ActionResult<IEnumerable<GalanganDana>>> GetGalanganDanasByQuery(long userId, string status)
     {
-        var galanganDana = await _galanganDanaService.GetAll();
-        return Ok(galanganDana);
+      var galanganDana = await _galanganDanaService.GetByQuery(userId, status);
+      return Ok(galanganDana);
     }
 
     //Get api/galang_dana/id
@@ -37,10 +45,10 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     {
       var galangan_dana = await _galanganDanaService.GetById(id);
 
-        if (galangan_dana == null)
-        {
-            return NotFound();
-        }
+      if (galangan_dana == null)
+      {
+        return NotFound();
+      }
 
       return Ok(galangan_dana);
     }
@@ -50,32 +58,32 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPut("{id}")]
     public async Task<IActionResult> PutGalanganDana(long id, GalanganDana galangan_dana)
     {
-        if (id != galangan_dana.Id)
-        {
+      if (id != galangan_dana.Id)
+      {
         return BadRequest();
-        }
+      }
 
-        try
+      try
+      {
+        var galangan_dana_updated = await _galanganDanaService.UpdateGalanganDana(id, galangan_dana);
+        if (galangan_dana_updated == 0)
         {
-            var galangan_dana_updated = await _galanganDanaService.UpdateGalanganDana(id, galangan_dana);
-            if (galangan_dana_updated == 0)
-            {
-                return BadRequest();
-            }
+          return BadRequest();
         }
-        catch (DbUpdateConcurrencyException)
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!_galanganDanaService.GalanganDanaExists(id))
         {
-            if (!_galanganDanaService.GalanganDanaExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
+          return NotFound();
         }
+        else
+        {
+          throw;
+        }
+      }
 
-        return Ok(galangan_dana);
+      return Ok(galangan_dana);
     }
 
     // POST: api/galang_dana
@@ -83,12 +91,12 @@ namespace if3250_2022_19_filantropi_backend.Controllers
     [HttpPost]
     public async Task<ActionResult<GalanganDana>> PostGalangDana(GalanganDana galangan_dana)
     {
-        var galangan_dana_created = await _galanganDanaService.CreateGalanganDana(galangan_dana);
-        if (galangan_dana_created != 0)
-        {
-            return Ok(galangan_dana);
-        }
-        return BadRequest(new { message = "Please check your entity request" });
+      var galangan_dana_created = await _galanganDanaService.CreateGalanganDana(galangan_dana);
+      if (galangan_dana_created != 0)
+      {
+        return Ok(galangan_dana);
+      }
+      return BadRequest(new { message = "Please check your entity request" });
     }
   }
 }

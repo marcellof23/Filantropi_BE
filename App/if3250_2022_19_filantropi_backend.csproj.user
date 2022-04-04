@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>App</ActiveDebugProfile>
+    <ActiveDebugProfile>if3250_2022_19_filantropi_backend</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

@@ -16,13 +16,14 @@ namespace if3250_2022_19_filantropi_backend.Services
   {
     Task<IEnumerable<Donasi>> GetAll();
     Task<Donasi> GetById(long id);
+    Task<IEnumerable<Donasi>> GetByUserId(long userId);
     Task<int> CreateDonasi(Donasi donasi);
     DataContext GetDataContext();
-    
+
   }
 
   public class DonasiService : IDonasiService
-    {
+  {
     private readonly DataContext _context;
     private readonly AppSettings _appSettings;
 
@@ -35,6 +36,19 @@ namespace if3250_2022_19_filantropi_backend.Services
     public async Task<IEnumerable<Donasi>> GetAll()
     {
       return await _context.Donasi.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Donasi>> GetByUserId(long userId)
+    {
+      var query = from s in _context.Donasi
+                  select s;
+
+      if (userId != 0)
+      {
+        query = query.Where(s => s.UserId == userId);
+      }
+
+      return await query.ToListAsync();
     }
 
     public async Task<Donasi> GetById(long id)
