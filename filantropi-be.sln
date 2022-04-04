@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "if3250_2022_19_filantropi_backend", "App\if3250_2022_19_filantropi_backend.csproj", "{3DFC6700-E774-4301-88CA-9D9C83704CC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F6E87528-EE96-4D47-B4EE-A70DD748CFED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DFC6700-E774-4301-88CA-9D9C83704CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFC6700-E774-4301-88CA-9D9C83704CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFC6700-E774-4301-88CA-9D9C83704CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFC6700-E774-4301-88CA-9D9C83704CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E87528-EE96-4D47-B4EE-A70DD748CFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E87528-EE96-4D47-B4EE-A70DD748CFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E87528-EE96-4D47-B4EE-A70DD748CFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E87528-EE96-4D47-B4EE-A70DD748CFED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
