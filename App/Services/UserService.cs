@@ -55,7 +55,7 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<IEnumerable<User>> GetAll()
     {
-      return await _context.Users.ToListAsync();
+      return await _context.Users.Where(f => f.Role!=Role.Blocked).ToListAsync();
     }
 
     public async Task<User> GetById(long id)
