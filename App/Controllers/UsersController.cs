@@ -100,6 +100,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       {
         return BadRequest(new { message = "Email exists" });
       }
+
       var user_created = await _userService.CreateUser(user);
       if (user_created != 0)
       {

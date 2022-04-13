@@ -12,6 +12,7 @@ using if3250_2022_19_filantropi_backend.Helpers;
 namespace if3250_2022_19_filantropi_backend.Services
 {
 
+  using BCrypt = BCrypt.Net.BCrypt;
   public interface IUserService
   {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
@@ -71,6 +72,8 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<int> CreateUser(User user)
     {
+      string passwordHash = BCrypt.HashPassword(user.Password);
+      //user.Password = passwordHash;
       _context.Users.Add(user);
       return await _context.SaveChangesAsync();
     }
