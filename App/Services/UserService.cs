@@ -44,9 +44,9 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
-      var user = _context.Users.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+      var user = _context.Users.FirstOrDefault(x => x.Email == model.Email);
       // return null if user not found
-      if (user == null) return null;
+      if (user == null || !BCrypt.Verify(model.Password, user.Password)) return null;
 
       // authentication successful so generate jwt token
       var token = generateJwtToken(user);
@@ -56,7 +56,7 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<IEnumerable<User>> GetAll()
     {
-      return await _context.Users.ToListAsync();
+      return await _context.Users.Where(f => f.Role != Role.Blocked).ToListAsync();
     }
 
     public async Task<User> GetById(long id)
@@ -73,25 +73,15 @@ namespace if3250_2022_19_filantropi_backend.Services
     public async Task<int> CreateUser(User user)
     {
       string passwordHash = BCrypt.HashPassword(user.Password);
-      //user.Password = passwordHash;
+      user.Password = passwordHash;
       _context.Users.Add(user);
       return await _context.SaveChangesAsync();
     }
 
     public async Task<int> UpdateUser(long id, User user)
     {
-      var local = _context.Set<User>()
-   .Local
-   .FirstOrDefault(entry => entry.Id.Equals(id));
-
-      // check if local is not null 
-      if (local != null)
-      {
-        _context.Entry(local).State = EntityState.Detached;
-      }
-
-      _context.Entry(user).State = EntityState.Modified;
-
+      Console.WriteLine(user.DonationAmount);
+      _context.Users.Update(user);
       return await _context.SaveChangesAsync();
     }
 
@@ -135,12 +125,11 @@ namespace if3250_2022_19_filantropi_backend.Services
       var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
 
       var claim_email = new Claim("email", user.Email.ToString());
-      var claim_role = new Claim("role", user.Role.ToString());
       var claim_id = new Claim("id", user.Id.ToString());
 
       var tokenDescriptor = new SecurityTokenDescriptor
       {
-        Subject = new ClaimsIdentity(new[] { claim_id, claim_email, claim_role }),
+        Subject = new ClaimsIdentity(new[] { claim_id, claim_email }),
         Expires = DateTime.UtcNow.AddMinutes(10),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };

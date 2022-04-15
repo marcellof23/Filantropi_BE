@@ -25,7 +25,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
         //Get api/donasi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Donasi>>> GetListDonasi()
+        public async Task<ActionResult<IEnumerable<DonasiResponse>>> GetListDonasi()
         {
             var donasi = await _donasiService.GetAll();
             return Ok(donasi);
@@ -33,7 +33,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
         //Get api/donasi/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Donasi>> GetDonasi(long id)
+        public async Task<ActionResult<DonasiResponse>> GetDonasi(long id)
         {
             var donasi = await _donasiService.GetById(id);
 
