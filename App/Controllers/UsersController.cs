@@ -34,7 +34,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(response);
     }
 
-    // GET: api/Users
+    // GET: api/user
     [Authorize(Role.Admin)]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
@@ -43,7 +43,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(users);
     }
 
-    // GET: api/Users/5
+    // GET: api/user/5
     [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult> GetUser(long id)
@@ -53,10 +53,18 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       {
         return NotFound();
       }
-      return Ok(users);
+      if (users.Role == Role.Blocked)
+      {
+        return BadRequest(new { message = "User blocked" });
+      }
+      else
+      {
+        return Ok(users);
+      }
+
     }
 
-    // PUT: api/Users/5
+    // PUT: api/user/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [Authorize]
     [HttpPut("{id}")]
@@ -90,7 +98,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(User);
     }
 
-    // POST: api/Users
+    // POST: api/user
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(User user)
@@ -100,7 +108,6 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       {
         return BadRequest(new { message = "Email exists" });
       }
-
       var user_created = await _userService.CreateUser(user);
       if (user_created != 0)
       {
@@ -109,7 +116,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return BadRequest(new { message = "Please check your entity request" });
     }
 
-    // DELETE: api/Users/5
+    // DELETE: api/user/5
     [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(long id)
@@ -121,6 +128,17 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       }
 
       return Ok(new { message = "User removed successfully" });
+    }
+
+    //Post api/user/block/{id}
+    [Authorize(Role.Admin)]
+    [HttpGet("block/{id}")]
+    public async Task<ActionResult<IEnumerable<User>>> BlockUser(long id)
+    {
+      var user = await _userService.GetById(id);
+      user.Role = Role.Blocked;
+      await PutUser(id, user);
+      return Ok(user);
     }
   }
 }
