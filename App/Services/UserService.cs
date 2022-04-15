@@ -80,7 +80,7 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<int> UpdateUser(long id, User user)
     {
-      Console.WriteLine(user.DonationAmount);
+      user.Password = BCrypt.HashPassword(user.Password);
       _context.Users.Update(user);
       return await _context.SaveChangesAsync();
     }

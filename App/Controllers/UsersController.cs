@@ -66,9 +66,9 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
     // PUT: api/user/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    //[Authorize(Role.Admin)]
+    [Authorize(Role.User)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(long id, User user)
+    public async Task<IActionResult> PutUser(long id, [FromBody] User user)
     {
       if (id != user.Id)
       {
@@ -76,14 +76,11 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       }
 
       var user_updated = await _userService.UpdateUser(id, user);
-      Console.WriteLine("ehehehe");
       if (user_updated == 0)
       {
-        Console.WriteLine("ehe");
         return BadRequest();
       }
-      Console.WriteLine(user_updated);
-      return Ok(User);
+      return Ok("Updated successfully");
     }
 
     // POST: api/user
