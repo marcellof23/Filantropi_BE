@@ -66,36 +66,21 @@ namespace if3250_2022_19_filantropi_backend.Controllers
 
     // PUT: api/user/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    [Authorize]
+    [Authorize(Role.User)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(long id, User user)
+    public async Task<IActionResult> PutUser(long id, [FromBody] User user)
     {
       if (id != user.Id)
       {
         return BadRequest();
       }
 
-      try
+      var user_updated = await _userService.UpdateUser(id, user);
+      if (user_updated == 0)
       {
-        var user_updated = await _userService.UpdateUser(id, user);
-        if (user_updated == 0)
-        {
-          return BadRequest();
-        }
+        return BadRequest();
       }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!_userService.UserExists(id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
-      }
-
-      return Ok(User);
+      return Ok("Updated successfully");
     }
 
     // POST: api/user
