@@ -50,7 +50,7 @@ namespace if3250_2022_19_filantropi_backend.Services
 
       if (status != "")
       {
-        query.Where(s => s.Status.Equals(0));
+        query.Where(s => s.Status.Equals(status));
       }
 
       return await query.ToListAsync();
