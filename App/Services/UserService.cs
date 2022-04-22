@@ -81,7 +81,19 @@ namespace if3250_2022_19_filantropi_backend.Services
     public async Task<int> UpdateUser(long id, User user)
     {
       user.Password = BCrypt.HashPassword(user.Password);
-      _context.Users.Update(user);
+
+      var local = _context.Set<User>()
+      .Local
+      .FirstOrDefault(entry => entry.Id.Equals(id));
+
+      // check if local is not null
+      if (local != null)
+      {
+        _context.Entry(local).State = EntityState.Detached;
+      }
+
+      _context.Entry(user).State = EntityState.Modified;
+
       return await _context.SaveChangesAsync();
     }
 
