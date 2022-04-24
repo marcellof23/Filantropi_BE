@@ -17,12 +17,13 @@ namespace if3250_2022_19_filantropi_backend.Services
     Task<IEnumerable<DonasiResponse>> GetAll();
     Task<DonasiResponse> GetById(long id);
     Task<int> CreateDonasi(Donasi donasi);
+    long GetTotalDonasiByGalangDanaID(long id);
     DataContext GetDataContext();
-    
+
   }
 
   public class DonasiService : IDonasiService
-    {
+  {
     private readonly DataContext _context;
     private readonly AppSettings _appSettings;
 
@@ -40,17 +41,28 @@ namespace if3250_2022_19_filantropi_backend.Services
       {
         if (!donasi.IsAnonym)
         {
-            var user = await _context.Users.FindAsync(donasi.UserId);
-            donasi_responses.Add(new DonasiResponse(donasi,user!.Name));
+          var user = await _context.Users.FindAsync(donasi.UserId);
+          donasi_responses.Add(new DonasiResponse(donasi, user!.Name));
         }
         else
         {
-            donasi_responses.Add(new DonasiResponse(donasi,"anonim"));
+          donasi_responses.Add(new DonasiResponse(donasi, "anonim"));
         }
       }
       return donasi_responses;
     }
 
+    public long GetTotalDonasiByGalangDanaID(long id)
+    {
+      //Task<long>
+      var totalDonasi = _context.Donasi.Where(s => s.GalangDanaId.Equals(id)).GroupBy(s => s.GalangDanaId).Select(s => new { Amount = s.Sum(b => b.Amount) });
+
+      var totalAmount = 0;
+      totalDonasi.ToList().ForEach(
+      row => totalAmount += row.Amount);
+
+      return totalAmount;
+    }
     public async Task<DonasiResponse> GetById(long id)
     {
       var donasi = await _context.Donasi.FindAsync(id);
@@ -64,12 +76,12 @@ namespace if3250_2022_19_filantropi_backend.Services
         DonasiResponse donasi_response;
         if (!donasi.IsAnonym)
         {
-            var user = await _context.Users.FindAsync(donasi.UserId);
-            donasi_response = new DonasiResponse(donasi, user!.Name);
+          var user = await _context.Users.FindAsync(donasi.UserId);
+          donasi_response = new DonasiResponse(donasi, user!.Name);
         }
         else
         {
-            donasi_response = new DonasiResponse(donasi, "anonim");
+          donasi_response = new DonasiResponse(donasi, "anonim");
         }
         return donasi_response;
       }
