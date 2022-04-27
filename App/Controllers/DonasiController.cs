@@ -12,45 +12,55 @@ using if3250_2022_19_filantropi_backend.Services;
 
 namespace if3250_2022_19_filantropi_backend.Controllers
 {
-    [Route("api/donasi")]
-    [ApiController]
-    public class DonasiController : ControllerBase
+  [Route("api/donasi")]
+  [ApiController]
+  public class DonasiController : ControllerBase
+  {
+    private IDonasiService _donasiService;
+
+    public DonasiController(IDonasiService donasiService)
     {
-        private IDonasiService _donasiService;
-
-        public DonasiController(IDonasiService donasiService)
-        {
-            _donasiService = donasiService;
-        }
-
-        //Get api/donasi
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Donasi>>> GetListDonasi()
-        {
-            var donasi = await _donasiService.GetAll();
-            return Ok(donasi);
-        }
-
-        //Get api/donasi/{id}
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Donasi>> GetDonasi(long id)
-        {
-            var donasi = await _donasiService.GetById(id);
-
-            if (donasi == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(donasi);
-        }
-
-        // POST: api/donasi
-        [HttpPost]
-        public async Task<ActionResult<Donasi>> PostDonasi(Donasi donasi)
-        {
-            await _donasiService.CreateDonasi(donasi);
-            return Ok(donasi);
-        }
+      _donasiService = donasiService;
     }
+
+    //Get api/donasi
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<DonasiResponse>>> GetListDonasi()
+    {
+      var donasi = await _donasiService.GetAll();
+      return Ok(donasi);
+    }
+
+    //Get api/donasi/{id}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<DonasiResponse>> GetDonasi(long id)
+    {
+      var donasi = await _donasiService.GetById(id);
+
+      if (donasi == null)
+      {
+        return NotFound();
+      }
+
+      return Ok(donasi);
+    }
+
+    // POST: api/donasi
+    [HttpPost]
+    public async Task<ActionResult<Donasi>> PostDonasi(Donasi donasi)
+    {
+      await _donasiService.CreateDonasi(donasi);
+      return Ok(donasi);
+    }
+
+    // POST: api/donasi
+    [HttpGet("galang-dana/{id}")]
+    public async Task<ActionResult<long>> GetTotalDonasiByGalangDanaID(long id)
+    {
+      var total = _donasiService.GetTotalDonasiByGalangDanaID(id);
+      if (total == 0)
+        return Ok(null);
+      return Ok(total);
+    }
+  }
 }

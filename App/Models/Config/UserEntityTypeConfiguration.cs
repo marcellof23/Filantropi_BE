@@ -9,6 +9,8 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
     {
       builder.ToTable("users");
 
+      builder.HasKey(b => b.Id);
+
       builder.Property(b => b.Id)
       .IsRequired()
       .HasColumnName("id")
@@ -28,7 +30,7 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
 
       builder.Property(b => b.Role)
       .IsRequired()
-      .HasColumnName("role");
+       .HasConversion<string>();
 
       builder.Property(b => b.ImageUrl)
       .HasColumnName("image_url");

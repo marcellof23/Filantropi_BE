@@ -12,6 +12,7 @@ using if3250_2022_19_filantropi_backend.Helpers;
 namespace if3250_2022_19_filantropi_backend.Services
 {
 
+  using BCrypt = BCrypt.Net.BCrypt;
   public interface IUserService
   {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
@@ -43,19 +44,19 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
-      var user = _context.Users.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+      var user = _context.Users.FirstOrDefault(x => x.Email == model.Email);
       // return null if user not found
-      if (user == null) return null;
+      if (user == null || !BCrypt.Verify(model.Password, user.Password)) return null;
 
       // authentication successful so generate jwt token
       var token = generateJwtToken(user);
 
-      return new AuthenticateResponse(user, token);
+      return new AuthenticateResponse(user.WithoutPassword(), token);
     }
 
     public async Task<IEnumerable<User>> GetAll()
     {
-      return await _context.Users.ToListAsync();
+      return await _context.Users.Where(f => f.Role != Role.Blocked).ToListAsync();
     }
 
     public async Task<User> GetById(long id)
@@ -71,18 +72,21 @@ namespace if3250_2022_19_filantropi_backend.Services
 
     public async Task<int> CreateUser(User user)
     {
-      Console.WriteLine("PUNTENNN");
+      string passwordHash = BCrypt.HashPassword(user.Password);
+      user.Password = passwordHash;
       _context.Users.Add(user);
       return await _context.SaveChangesAsync();
     }
 
     public async Task<int> UpdateUser(long id, User user)
     {
-      var local = _context.Set<User>()
-   .Local
-   .FirstOrDefault(entry => entry.Id.Equals(id));
+      user.Password = BCrypt.HashPassword(user.Password);
 
-      // check if local is not null 
+      var local = _context.Set<User>()
+      .Local
+      .FirstOrDefault(entry => entry.Id.Equals(id));
+
+      // check if local is not null
       if (local != null)
       {
         _context.Entry(local).State = EntityState.Detached;
@@ -131,14 +135,20 @@ namespace if3250_2022_19_filantropi_backend.Services
       // generate token that is valid for 7 days
       var tokenHandler = new JwtSecurityTokenHandler();
       var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+      var claim_email = new Claim("email", user.Email.ToString());
+      var claim_id = new Claim("id", user.Id.ToString());
+
       var tokenDescriptor = new SecurityTokenDescriptor
       {
-        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-        Expires = DateTime.UtcNow.AddDays(7),
+        Subject = new ClaimsIdentity(new[] { claim_id, claim_email }),
+        Expires = DateTime.UtcNow.AddMinutes(10),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
+
       var token = tokenHandler.CreateToken(tokenDescriptor);
       return tokenHandler.WriteToken(token);
     }
+
   }
 }

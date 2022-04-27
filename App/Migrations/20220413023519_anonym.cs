@@ -4,23 +4,23 @@
 
 namespace if3250_2022_19_filantropi_backend.Migrations
 {
-    public partial class AddUserSaldo : Migration
+    public partial class anonym : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<float>(
-                name: "saldo",
-                table: "users",
-                type: "real",
+            migrationBuilder.AddColumn<bool>(
+                name: "is_anonym",
+                table: "donasi",
+                type: "boolean",
                 nullable: false,
-                defaultValue: 0f);
+                defaultValue: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "saldo",
-                table: "users");
+                name: "is_anonym",
+                table: "donasi");
         }
     }
 }

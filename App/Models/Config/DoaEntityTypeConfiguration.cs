@@ -16,11 +16,11 @@ namespace if3250_2022_19_filantropi_backend.Models.Config
 
             builder.Property(b => b.GalangDanaId)
             .IsRequired()
-            .HasColumnName("galangDanaId");
+            .HasColumnName("galangdana_id");
 
             builder.Property(b => b.UserId)
             .IsRequired()
-            .HasColumnName("userId");           
+            .HasColumnName("user_id");           
 
             builder.Property(b => b.Description)
             .IsRequired()

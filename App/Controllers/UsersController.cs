@@ -34,8 +34,8 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(response);
     }
 
-    // GET: api/Users
-    [Authorize]
+    // GET: api/user
+    [Authorize(Role.Admin)]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
@@ -43,7 +43,7 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       return Ok(users);
     }
 
-    // GET: api/Users/5
+    // GET: api/user/5
     [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult> GetUser(long id)
@@ -53,48 +53,42 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       {
         return NotFound();
       }
-      return Ok(users);
+      if (users.Role == Role.Blocked)
+      {
+        return BadRequest(new { message = "User blocked" });
+      }
+      else
+      {
+        return Ok(users);
+      }
+
     }
 
-    // PUT: api/Users/5
+    // PUT: api/user/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    [Authorize]
+    [Authorize(Role.User)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(long id, User user)
+    public async Task<IActionResult> PutUser(long id, [FromBody] User user)
     {
       if (id != user.Id)
       {
         return BadRequest();
       }
 
-      try
+      var user_updated = await _userService.UpdateUser(id, user);
+      if (user_updated == 0)
       {
-        var user_updated = await _userService.UpdateUser(id, user);
-        if (user_updated == 0)
-        {
-          return BadRequest();
-        }
+        return BadRequest();
       }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!_userService.UserExists(id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
-      }
-
-      return Ok(User);
+      return Ok("Updated successfully");
     }
 
-    // POST: api/Users
+    // POST: api/user
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<User>> RegisterUser(User user)
     {
+      user.Role = Role.User;
       if (_userService.EmailExists(user.Email))
       {
         return BadRequest(new { message = "Email exists" });
@@ -102,12 +96,12 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       var user_created = await _userService.CreateUser(user);
       if (user_created != 0)
       {
-        return Ok(user);
+        return Ok(user.WithoutPassword());
       }
       return BadRequest(new { message = "Please check your entity request" });
     }
 
-    // DELETE: api/Users/5
+    // DELETE: api/user/5
     [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(long id)
@@ -119,6 +113,17 @@ namespace if3250_2022_19_filantropi_backend.Controllers
       }
 
       return Ok(new { message = "User removed successfully" });
+    }
+
+    //Post api/user/block/{id}
+    [Authorize(Role.Admin)]
+    [HttpGet("block/{id}")]
+    public async Task<ActionResult<IEnumerable<User>>> BlockUser(long id)
+    {
+      var user = await _userService.GetById(id);
+      user.Role = Role.Blocked;
+      await PutUser(id, user);
+      return Ok(user);
     }
   }
 }
